@@ -18,5 +18,10 @@ public class Movement : MonoBehaviour
     void Update()
     {
         navMeshAgent.SetDestination(target.position);
+        print(navMeshAgent.remainingDistance);
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
+        {
+            navMeshAgent.isStopped = true;
+        }
     }
 }
