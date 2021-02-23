@@ -6,7 +6,7 @@ using UnityEngine;
 public class State : ScriptableObject
 {
     public Action[] actions;
-    public Transifition[] transifitions;
+    public Transifition[] transitions;
 
     public void UpdateState(StateController controller)
     {
@@ -24,11 +24,11 @@ public class State : ScriptableObject
 
    private void CheckTransitions(StateController controller)
     {
-        for(int i = 0; i < transifitions.Length; i++)
+        for(int i = 0; i < transitions.Length; i++)
         {
-            bool decisionSucceeded = transifitions[i].decision.Decide(controller);
+            bool decisionSucceeded = transitions[i].decision.Decide(controller);
 
-            State transitionState = decisionSucceeded ? transifitions[i].trueState : transifitions[i].falseState;
+            State transitionState = decisionSucceeded ? transitions[i].trueState : transitions[i].falseState;
 
             controller.TransitionToState(transitionState);
 

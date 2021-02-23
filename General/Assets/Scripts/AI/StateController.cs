@@ -10,12 +10,21 @@ public class StateController : MonoBehaviour
     public Stats stats;
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
+    [HideInInspector] public Attack attack;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public List<Transform> pointList;
-    [HideInInspector] public Transform targetPoint;
+    //[HideInInspector] public Transform targetPoint;
+    public Transform targetPoint;
     [HideInInspector] public int nextPoint;
+    [HideInInspector] public Collider attackObject;
 
-    private bool aiActive;
+    private bool aiActive = true;
+
+    private void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        attack = GetComponent<Attack>();
+    }
 
     public void SetupAI(bool aiActivationFromManager, List<Transform> PointsFromManager)
     {

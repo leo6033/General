@@ -6,5 +6,6 @@ using UnityEngine;
 public class Stats : ScriptableObject
 {
     public float attackRange;
+    public float attackRate;
 }
 

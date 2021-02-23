@@ -12,6 +12,10 @@ public class BattleAction : Action
 
     private void Battle(StateController controller)
     {
-        
+        controller.navMeshAgent.isStopped = true;
+        if (controller.CheckifCountDownElapsed(controller.stats.attackRate))
+        {
+            controller.attack.AttackEnemy(controller.attackObject, controller.stats.attackRate);
+        }
     }
 }
