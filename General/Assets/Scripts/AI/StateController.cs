@@ -13,8 +13,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public Attack attack;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public List<Transform> pointList;
-    //[HideInInspector] public Transform targetPoint;
-    public Transform targetPoint;
+    [HideInInspector] public Transform targetPoint;
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
 
@@ -28,9 +27,22 @@ public class StateController : MonoBehaviour
 
     public void SetupAI(bool aiActivationFromManager, List<Transform> PointsFromManager)
     {
+        
         pointList = PointsFromManager;
         aiActive = aiActivationFromManager;
         navMeshAgent.enabled = aiActive;
+
+        float distance = Mathf.Infinity;
+        foreach (Transform point in pointList)
+        {
+            float tmpDistance = Vector3.Distance(transform.position, point.position);
+            if (tmpDistance < distance)
+            {
+                distance = tmpDistance;
+                targetPoint = point;
+            }
+        }
+        Debug.Log(transform.gameObject.name + " setup" + targetPoint + aiActivationFromManager);
     }
 
     public void TransitionToState(State nextState)

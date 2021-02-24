@@ -17,7 +17,12 @@ public class WalkDecision : Decision
         Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.attackRange, 1<<8);
         foreach (Collider c in objects)
         {
-            if (c.tag == "Player" && isInVision(controller, c))
+            if(c.tag == "House")
+            {
+                controller.attackObject = c;
+                return true;
+            }
+            else if (c.tag == "Player" && isInVision(controller, c))
             {
                 // TODO: 设置攻击目标
                 controller.attackObject = c;
