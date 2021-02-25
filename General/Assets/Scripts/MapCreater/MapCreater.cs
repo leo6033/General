@@ -137,6 +137,16 @@ public class MapCreater : MonoBehaviour
 
             x = (int)(Random.value * (10 - castleSize) + castleSize / 2);
             z = (int)(Random.value * (10 - castleSize) + castleSize / 2);
+
+            if (areaNum > 3)
+            {
+                x += 10;
+                z += 10 * (areaNum - 4);
+            }
+            else
+            {
+                z += 10 * (areaNum - 1);
+            }
             tryCnt++;
             m_CubeScript = m_PlaneCubeManager.getCube(x, z).GetComponent<PlaneCube>();
             float height = m_CubeScript.height;
