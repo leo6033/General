@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapCreater : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class MapCreater : MonoBehaviour
     }
     void createPlane()
     {
+        GameObject plane = new GameObject();
+        plane.AddComponent<NavMeshSurface>();
+
         int x = 0;
         int z = 0;
         for (int i = 0; i < widthSize; i++)
@@ -51,12 +55,15 @@ public class MapCreater : MonoBehaviour
             for (int j = 0; j < lengthSize; j++)
             {
                 GameObject cube = GameObject.Instantiate(cubePre, new Vector3(x, transform.position.y, z), cubePre.transform.rotation);
+                cube.transform.parent = plane.transform;
                 m_PlaneCubeManager.AddCube(cube.transform);
                 x++;
             }
             z++;
             x = 0;
         }
+
+        plane.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     void createPlatform()
