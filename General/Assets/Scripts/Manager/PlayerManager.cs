@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [HideInInspector] public GameObject m_Instance;
 
-    // Update is called once per frame
-    void Update()
+    public void Setup()
     {
-        
+        StateController[] stateControllers = m_Instance.GetComponentsInChildren<StateController>();
+        foreach(StateController stateController in stateControllers)
+        {
+            stateController.SetupAI(true, null);
+            stateController.navMeshAgent.isStopped = true;
+        }
     }
 }
