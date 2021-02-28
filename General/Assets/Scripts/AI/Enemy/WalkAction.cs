@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "AI/Actions/Walk")]
+[CreateAssetMenu (menuName = "AI/Actions/Enemy/Walk")]
 public class WalkAction : Action
 {
     public override void Act(StateController controller)
