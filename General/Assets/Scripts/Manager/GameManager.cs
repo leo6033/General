@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        CreatePlayer();
         CreateEnemy();
     }
 
@@ -20,13 +21,21 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < m_EnemyPrefabs.Length; i++)
         {
-            for(int j = 0; j < m_EnemyPrefabs[i].m_LegionNumber; j++)
-            {
-                GameObject legion = Instantiate(m_EnemyPrefabs[i].LegionPrefeb, m_test) as GameObject;
-                EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
-                enemyManager.m_Instance = legion;
-                enemyManager.Setup(m_housePoint);
-            }
+            GameObject legion = Instantiate(m_EnemyPrefabs[i].LegionPrefeb, m_EnemyPrefabs[i].m_LegionPosition) as GameObject;
+            EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
+            enemyManager.m_Instance = legion;
+            enemyManager.Setup(m_housePoint);
+        }
+    }
+
+    private void CreatePlayer()
+    {
+        for(int i = 0; i < m_PlayerPrefabs.Length; i++)
+        {
+            GameObject legion = Instantiate(m_PlayerPrefabs[i].LegionPrefeb, m_PlayerPrefabs[i].m_LegionPosition) as GameObject;
+            PlayerManager playerManager = legion.GetComponent<PlayerManager>();
+            playerManager.m_Instance = legion;
+            playerManager.Setup();
         }
     }
 }

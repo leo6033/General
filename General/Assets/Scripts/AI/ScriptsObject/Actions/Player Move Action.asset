@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c386f9efca1884f9d34d37bb662047, type: 3}
   m_Name: Player Move Action
   m_EditorClassIdentifier: 
-  standby: {fileID: 0}
+  standby: {fileID: 11400000, guid: d37eba9abbe30774d9e5e29ef6c5a1ae, type: 2}

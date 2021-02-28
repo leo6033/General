@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4143d3b082ff848b56b5e72ba18e29, type: 3}
   m_Name: Player Walk Battle
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: 32429ebc16f52a54e8eb135100637725, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 924e9c8fa765b6b429e0c450cccdedbd, type: 2}
+    trueState: {fileID: 11400000, guid: c7a9f04e27e89f44f9873932c3c9ad0c, type: 2}
+    falseState: {fileID: 11400000, guid: 80af6a5f6cff9424d9509092502b163a, type: 2}

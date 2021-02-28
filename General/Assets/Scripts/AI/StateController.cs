@@ -33,6 +33,8 @@ public class StateController : MonoBehaviour
         navMeshAgent.enabled = aiActive;
 
         float distance = Mathf.Infinity;
+        if (pointList == null)
+            return;
         foreach (Transform point in pointList)
         {
             float tmpDistance = Vector3.Distance(transform.position, point.position);

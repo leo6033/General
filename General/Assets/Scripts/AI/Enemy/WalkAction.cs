@@ -12,7 +12,6 @@ public class WalkAction : Action
 
     private void Walk(StateController controller)
     {
-        Debug.Log(controller.gameObject.name + " Walk");
         controller.navMeshAgent.SetDestination(controller.targetPoint.position);
         controller.navMeshAgent.isStopped = false;
 

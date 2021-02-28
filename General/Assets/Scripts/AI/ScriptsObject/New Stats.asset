@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71c4ed59af3dda4fa8dbcaa378a7219, type: 3}
   m_Name: New Stats
   m_EditorClassIdentifier: 
-  attackRange: 1
-  attackRate: 2
+  attackRange: 3
+  attackRate: 1
