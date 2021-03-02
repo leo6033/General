@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -508,13 +509,29 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.055305768, y: -0.8984194, z: 0.41942307, w: 0.1177634}
+  m_LocalRotation: {x: 0.05489374, y: -0.8984446, z: 0.41947666, w: 0.11757265}
   m_LocalPosition: {x: 14.265621, y: 21.044584, z: 24.542107}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1485485171}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.055, y: -165.089, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd55902cbc4fed143928ce94cc90014a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translateSpeed: 5
+  rotationSpeed: 10
+  trans: {fileID: 1485485171}
 --- !u!1 &1187783526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439963641000670074, guid: 0f07dd3d497cf6d43be13427e8fd10aa, type: 3}
@@ -588,6 +605,36 @@ MonoBehaviour:
     LegionPrefeb: {fileID: 3542742060235425185, guid: f36c7a86c094cac41abc39770864fb83, type: 3}
   m_housePoint:
   - {fileID: 289280510}
+--- !u!1 &1485485170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485485171}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1485485171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485485170}
+  m_LocalRotation: {x: -0.05489374, y: 0.8984446, z: -0.41947666, w: 0.11757265}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1517227119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8335942816802443480, guid: 0f07dd3d497cf6d43be13427e8fd10aa, type: 3}
