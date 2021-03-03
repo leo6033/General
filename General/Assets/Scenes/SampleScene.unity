@@ -756,14 +756,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231999086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94e37c300b84dc44283bc708fa71ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_test: {fileID: 144501172}
   m_EnemyPrefabs:
-  - m_LegionNumber: 1
+  - m_LegionPosition: {fileID: 0}
     LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
   m_PlayerPrefabs: []
   m_housePoint:
@@ -848,7 +848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d01dc7c6d334044b8a4ee4443bfab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1231999087}
+  m_TargetPoint: {fileID: 0}
+  m_WalkState: {fileID: 0}
 --- !u!195 &1612743882
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -888,7 +889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d01dc7c6d334044b8a4ee4443bfab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1231999087}
+  m_TargetPoint: {fileID: 0}
+  m_WalkState: {fileID: 0}
 --- !u!208 &1689927003
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -979,6 +981,7 @@ MonoBehaviour:
   targetPoint: {fileID: 1231999087}
   nextPoint: 0
   attackObject: {fileID: 0}
+  RelativePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1689927008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,7 +1186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d01dc7c6d334044b8a4ee4443bfab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1231999087}
+  m_TargetPoint: {fileID: 0}
+  m_WalkState: {fileID: 0}
 --- !u!54 &2135619880
 Rigidbody:
   m_ObjectHideFlags: 0

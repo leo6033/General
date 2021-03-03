@@ -21,4 +21,14 @@ public class PlaneCubeManager : MonoBehaviour
         return cubes[i];
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            foreach(Transform cube in cubes)
+            {
+                cube.GetComponent<PlaneCube>().switchGrid();
+            }
+        }
+    }
 }
