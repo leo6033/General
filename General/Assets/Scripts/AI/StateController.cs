@@ -16,6 +16,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public Transform targetPoint;
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
+    [HideInInspector] public Vector3 RelativePosition;
 
     private bool aiActive = true;
 
@@ -31,6 +32,10 @@ public class StateController : MonoBehaviour
         pointList = PointsFromManager;
         aiActive = aiActivationFromManager;
         navMeshAgent.enabled = aiActive;
+
+        //Debug.Log(gameObject.name + transform.parent.transform.position + GetComponent<Transform>().position);
+
+        RelativePosition = transform.parent.transform.position - GetComponent<Transform>().position;
 
         float distance = Mathf.Infinity;
         if (pointList == null)

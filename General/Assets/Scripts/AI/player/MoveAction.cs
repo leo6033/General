@@ -14,8 +14,8 @@ public class MoveAction : Action
 
     private void Move(StateController controller)
     {
-        Debug.Log(controller.gameObject.name + " Walk");
-        controller.navMeshAgent.SetDestination(controller.targetPoint.position);
+        //Debug.Log(controller.gameObject.name + " Walk" + controller.targetPoint.position + controller.RelativePosition);
+        controller.navMeshAgent.SetDestination(controller.targetPoint.position + controller.RelativePosition);
         controller.navMeshAgent.isStopped = false;
 
         if (controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending)

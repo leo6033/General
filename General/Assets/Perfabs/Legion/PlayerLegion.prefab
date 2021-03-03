@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7401891362164017641}
   - component: {fileID: 6774550683299575093}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerLegion
-  m_TagString: Untagged
+  m_TagString: Legion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
