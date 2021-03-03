@@ -103,6 +103,7 @@ public class MapCreater : MonoBehaviour
                 {
                     m_CubeScript = m_PlaneCubeManager.getCube(xi, zi).GetComponent<PlaneCube>();
                     m_CubeScript.height += platformHeight;
+                    m_CubeScript.isShowGrid = false;
                 }
             }
         }
@@ -178,6 +179,14 @@ public class MapCreater : MonoBehaviour
         float y = (float)(transform.position.y + m_CubeScript.height + castlePre.transform.localScale.y * 0.5f);
 
         GameObject.Instantiate(castlePre, new Vector3(z, y, x), castlePre.transform.rotation);
+        for (int xi = x - 1; xi <= x + 1; xi++)
+        {
+            for (int zi = z - 1; zi <= z + 1; zi++)
+            {
+                m_CubeScript = m_PlaneCubeManager.getCube(xi, zi).GetComponent<PlaneCube>();
+                m_CubeScript.isShowGrid = false;
+            }
+        }
     }
 
     void createObstacle()
@@ -205,6 +214,7 @@ public class MapCreater : MonoBehaviour
             float y = (float)(transform.position.y + m_CubeScript.height + obstaclePre.transform.localScale.y * 0.05f);
             
             GameObject.Instantiate(obstaclePre, new Vector3(z, y, x), obstaclePre.transform.rotation);
+            m_CubeScript.isShowGrid = false;
         }
     }
 
@@ -232,6 +242,7 @@ public class MapCreater : MonoBehaviour
             float y = (float)(transform.position.y + m_CubeScript.height + housePre.transform.localScale.y * 0.05f);
 
             GameObject.Instantiate(housePre, new Vector3(z, y, x), housePre.transform.rotation);
+            m_CubeScript.isShowGrid = false;
         }
     }
 

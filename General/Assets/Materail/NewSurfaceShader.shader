@@ -1,63 +1,96 @@
-﻿Shader "Custom/NewSurfaceShader"
-{
-	Properties
-	{
-		_Color("Color", color) = (1,1,1,1)
-		_Width("Width", range(0,0.5)) = 0.5
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Toon/Basic Outline" {
+	Properties{
+		_Color("Main Color", Color) = (.5,.5,.5,1)
+		_OutlineColor("Outline Color", Color) = (0,1,0,1)
+		_Outline("Outline width", Range(0.005, 0.01)) = 0.01
+		_MainTex("Texture", 2D) = "white" {}
+		_BumpMap("Bumpmap", 2D) = "bump" {}
 	}
-		SubShader
-	{
-		Tags { "Queue" = "Transparent" }
-		Pass {
 
-		//如果要显示背面的线框，取消下面两个注释即可
-				 // cull off
-				  //ZWrite off
-				  blend srcalpha oneminussrcalpha
-				  CGPROGRAM
+		CGINCLUDE
+#include "UnityCG.cginc"
 
-				  #pragma vertex vert
-				  #pragma fragment frag
-				  #include "UnityCG.cginc"
-				  uniform sampler2D _MainTex;
-				  uniform float4 _MainTex_ST;
-				  fixed4 _Color;
-				  fixed _Width;
+		struct appdata {
+		float4 vertex : POSITION;
+		float3 normal : NORMAL;
+	};
 
-				  struct a2v {
-					  float4 vertex : POSITION;
-					  float2 uv : TEXCOORD0;
-				  };
+	struct v2f {
+		float4 pos : POSITION;
+		float4 color : COLOR;
+	};
 
-				  struct v2f {
-					  float4 pos : SV_POSITION;
-					  float2 uv : TEXCOORD0;
-				  };
+	uniform float _Outline;
+	uniform float4 _OutlineColor;
 
-				  v2f vert(a2v v) {
-					  v2f o;
+	v2f vert(appdata v) {
+		v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
 
-					  o.pos = UnityObjectToClipPos(v.vertex);
-					  o.uv = v.uv;
+		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+		float2 offset = TransformViewToProjection(norm.xy);
 
-					  return o;
-				  }
+		o.pos.xy += offset * o.pos.z * _Outline;
+		o.color = _OutlineColor;
+		return o;
+	}
+	ENDCG
 
-				  float4 frag(v2f i) : SV_Target {
+		SubShader{
+			Tags { "RenderType" = "Opaque" }
+			UsePass "Toon/Basic/BASE"
+			Pass {
+				Name "OUTLINE"
+				Tags { "LightMode" = "Always" }
+				Cull Front
+				ZWrite On
+				ColorMask RGB
+				Blend SrcAlpha OneMinusSrcAlpha
 
-					  fixed4 col = fixed4(0,0,0,0);//Cube的基础颜色
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				half4 frag(v2f i) :COLOR { return i.color; }
+				ENDCG
+			}
+	}
 
-					  col += saturate(step(i.uv.x, _Width) + step(1 - _Width, i.uv.x) + step(i.uv.y, _Width) + step(1 - _Width, i.uv.y)) * _Color;
+		SubShader{
+			Tags { "RenderType" = "Opaque" }
+			UsePass "Toon/Basic/BASE"
+			Pass {
+				Name "OUTLINE"
+				Tags { "LightMode" = "Always" }
+				Cull Front
+				ZWrite On
+				ColorMask RGB
+				Blend SrcAlpha OneMinusSrcAlpha
 
-					  //if (i.uv.x < _Width || i.uv.x > 1 - _Width || i.uv.y < _Width || i.uv.y > 1 - _Width) 
-					  //{
-					  //	col = _Color;
-					  //}
-
-					  return  col;
-				  }
-
-				  ENDCG
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma exclude_renderers shaderonly
+				ENDCG
+				SetTexture[_MainTex] { combine primary }
+						}
+	}
+		SubShader{
+			  Tags { "RenderType" = "Opaque" }
+			  CGPROGRAM
+			  #pragma surface surf Lambert
+			  struct Input {
+				float2 uv_MainTex;
+				float2 uv_BumpMap;
+			  };
+			  sampler2D _MainTex;
+			  sampler2D _BumpMap;
+			  void surf(Input IN, inout SurfaceOutput o) {
+				o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
+				o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 			  }
+			  ENDCG
 	}
+
+		Fallback "Diffuse"
 }

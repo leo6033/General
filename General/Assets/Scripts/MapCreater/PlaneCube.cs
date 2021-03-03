@@ -2,6 +2,9 @@
 
 public class PlaneCube : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isShowGrid = true;
+
     public float height;
     public Material planeCube;
     public Material planeCubeGrid;
@@ -14,7 +17,6 @@ public class PlaneCube : MonoBehaviour
 
     private void showGrid()
     {
-        
         isGrid = true;
         Material[] materials = GetComponent<MeshRenderer>().materials;
         materials[1] = planeCubeGrid;
@@ -31,7 +33,7 @@ public class PlaneCube : MonoBehaviour
 
     public void switchGrid()
     {
-
+        if (!isShowGrid) return;
         if (isGrid)
         {
             cancelGrid();
