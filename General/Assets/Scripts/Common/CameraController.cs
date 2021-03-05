@@ -38,20 +38,20 @@ public class CameraController : MonoBehaviour
     {
         if (!isRotating)
         {
-            if (Input.mousePosition.x >= Screen.width * 0.98)
+            if (Input.mousePosition.x >= Screen.width * 0.98 && transform.position.x <= 15)
             {
                 transform.Translate(trans.right * translateSpeed * Time.deltaTime, Space.World);
             }
-            else if (Input.mousePosition.x <= Screen.width * 0.02)
+            else if (Input.mousePosition.x <= Screen.width * 0.02 && transform.position.x >= -10)
             {
                 transform.Translate(-trans.right * translateSpeed * Time.deltaTime, Space.World);
             }
 
-            if (Input.mousePosition.y >= Screen.height * 0.98)
+            if (Input.mousePosition.y >= Screen.height * 0.98 && transform.position.z <= 15)
             {
                 transform.Translate(trans.forward * translateSpeed * Time.deltaTime, Space.World);
             }
-            else if (Input.mousePosition.y <= Screen.height * 0.02)
+            else if (Input.mousePosition.y <= Screen.height * 0.02 && transform.position.z >= -10)
             {
                 transform.Translate(-trans.forward * translateSpeed * Time.deltaTime, Space.World);
             }
