@@ -25,15 +25,15 @@ public class PlaneCubeManager : MonoBehaviour
     {
         foreach (Transform cube in cubes)
         {
-            cube.GetComponent<PlaneCube>().switchGrid();
+            cube.GetComponent<PlaneCube>().showGrid();
         }
     }
 
-    private void Update()
+    public void cancleGrid()
     {
-        if (Input.GetMouseButtonDown(0))
+        foreach (Transform cube in cubes)
         {
-            showGrid();
+            cube.GetComponent<PlaneCube>().cancelGrid();
         }
     }
 }

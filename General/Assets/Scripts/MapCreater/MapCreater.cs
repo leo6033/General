@@ -30,6 +30,8 @@ public class MapCreater : MonoBehaviour
     public int obstacleNumMin;
     public int obstacleNumMax;
 
+    [HideInInspector] public List<Transform> houseTransform;
+
 
     private PlaneCubeManager m_PlaneCubeManager;
     private PlaneCube m_CubeScript;
@@ -178,7 +180,8 @@ public class MapCreater : MonoBehaviour
         //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量(自身高度的一半) 
         float y = (float)(transform.position.y + m_CubeScript.height + castlePre.transform.localScale.y * 0.5f);
 
-        GameObject.Instantiate(castlePre, new Vector3(z, y, x), castlePre.transform.rotation);
+        GameObject castle = GameObject.Instantiate(castlePre, new Vector3(z, y, x), castlePre.transform.rotation);
+        houseTransform.Add(castle.transform);
         for (int xi = x - 1; xi <= x + 1; xi++)
         {
             for (int zi = z - 1; zi <= z + 1; zi++)
@@ -241,7 +244,8 @@ public class MapCreater : MonoBehaviour
             //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量(自身高度的一半) （由于城堡尺寸放大了10倍，所以用0.05）
             float y = (float)(transform.position.y + m_CubeScript.height + housePre.transform.localScale.y * 0.05f);
 
-            GameObject.Instantiate(housePre, new Vector3(z, y, x), housePre.transform.rotation);
+            GameObject house = GameObject.Instantiate(housePre, new Vector3(z, y, x), housePre.transform.rotation);
+            houseTransform.Add(house.transform);
             m_CubeScript.isShowGrid = false;
         }
     }

@@ -5,16 +5,22 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
+    public State m_WalkState;
+
     private GameObject go;
     private bool m_Selected = false;
-    public Transform m_TargetPoint;
+    private PlaneCubeManager PlaneCubeManager;
 
-    public State m_WalkState;
+    private void Awake()
+    {
+        PlaneCubeManager = GetComponent<PlaneCubeManager>();   
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !m_Selected)
         {
+            PlaneCubeManager.showGrid();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
@@ -26,14 +32,25 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && m_Selected)
         {
-            StateController[] objs = go.GetComponentsInChildren<StateController>();
-            foreach(StateController stateController in objs)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 11))
             {
-                stateController.targetPoint = m_TargetPoint;
-                stateController.currentState = m_WalkState;
+                Transform m_TargetPoint = hit.transform;
+                if (m_TargetPoint != null && m_TargetPoint.tag == "PlaneCube")
+                {
+                    Debug.Log(m_TargetPoint.position);
+                    StateController[] objs = go.GetComponentsInChildren<StateController>();
+                    foreach (StateController stateController in objs)
+                    {
+                        stateController.targetPoint = m_TargetPoint;
+                        stateController.currentState = m_WalkState;
+                    }
+                    m_Selected = false;
+                    PlaneCubeManager.cancleGrid();
+                    go = null;
+                }    
             }
-            m_Selected = false;
-            go = null;
         }
     }
 }

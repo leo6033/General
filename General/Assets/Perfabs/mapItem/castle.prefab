@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5947385449594102844}
   - component: {fileID: 7187431737370670053}
   - component: {fileID: 4113362523289160113}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8329471140323833557}
   - component: {fileID: 4337217586118009618}
   - component: {fileID: 882911965041183874}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1880226693676936969}
   - component: {fileID: 9008574492953821408}
   - component: {fileID: 2474589047751362813}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,8 +253,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2626527313932248634}
   - component: {fileID: 6315403370389227100}
-  m_Layer: 0
-  m_Name: Castle
+  m_Layer: 11
+  m_Name: castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 3577206023433375622}
   - component: {fileID: 5751295228553769416}
   - component: {fileID: 9197738598391337099}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 2696289338307428493}
   - component: {fileID: 5888186611049173466}
   - component: {fileID: 7385229979320993635}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 4129366414334196938}
   - component: {fileID: 543717737691298017}
   - component: {fileID: 2272276912973133767}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 4137472346906190408}
   - component: {fileID: 8107254215106853039}
   - component: {fileID: 5204532569887102881}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 317331659018860998}
   - component: {fileID: 4288243036500497135}
   - component: {fileID: 7666313962885214381}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 456824604024124788}
   - component: {fileID: 426810360597563514}
   - component: {fileID: 5225506290320345529}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: castle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

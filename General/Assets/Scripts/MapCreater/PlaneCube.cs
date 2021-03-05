@@ -15,16 +15,18 @@ public class PlaneCube : MonoBehaviour
         height = transform.position.y + transform.localScale.y * 0.5f;
     }
 
-    private void showGrid()
+    public void showGrid()
     {
+        if (!isShowGrid) return;
         isGrid = true;
         Material[] materials = GetComponent<MeshRenderer>().materials;
         materials[1] = planeCubeGrid;
         GetComponent<Renderer>().materials = materials;
     }
 
-    private void cancelGrid()
+    public void cancelGrid()
     {
+        if (!isShowGrid) return;
         isGrid = false;
         Material[] materials = GetComponent<MeshRenderer>().materials;
         materials[1] = planeCube;
