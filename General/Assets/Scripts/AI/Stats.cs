@@ -7,5 +7,6 @@ public class Stats : ScriptableObject
 {
     public float attackRange;
     public float attackRate;
+    public float visionRange;
 }
 
