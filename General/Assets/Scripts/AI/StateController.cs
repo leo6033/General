@@ -49,7 +49,7 @@ public class StateController : MonoBehaviour
                 targetPoint = point;
             }
         }
-        Debug.Log(transform.gameObject.name + " setup" + targetPoint + aiActivationFromManager);
+        //Debug.Log(transform.gameObject.name + " setup" + targetPoint + aiActivationFromManager);
     }
 
     public void TransitionToState(State nextState)

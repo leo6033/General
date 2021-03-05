@@ -11,6 +11,7 @@ public class Attack : MonoBehaviour
     {
         if(Time.time > nextAttackTime)
         {
+            Debug.Log(collider.name);
             nextAttackTime = Time.time + attackRate;
             // TODO: 伤害判定等
             Health targetHealth = collider.GetComponent<Health>();

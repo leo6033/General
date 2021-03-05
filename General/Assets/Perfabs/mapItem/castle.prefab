@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5947385449594102844}
   - component: {fileID: 7187431737370670053}
   - component: {fileID: 4113362523289160113}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8329471140323833557}
   - component: {fileID: 4337217586118009618}
   - component: {fileID: 882911965041183874}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1880226693676936969}
   - component: {fileID: 9008574492953821408}
   - component: {fileID: 2474589047751362813}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,9 +253,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2626527313932248634}
   - component: {fileID: 6315403370389227100}
-  m_Layer: 11
+  - component: {fileID: 9077247990327206765}
+  - component: {fileID: 5819742229101821797}
+  - component: {fileID: -6400663400709203859}
+  m_Layer: 8
   m_Name: castle
-  m_TagString: Untagged
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,6 +302,48 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!54 &9077247990327206765
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626527313932248635}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5819742229101821797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626527313932248635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6400663400709203859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626527313932248635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cb46b02b651f94a816276daf9c3c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StartingHealth: 100
 --- !u!1 &2814865057856611224
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +355,7 @@ GameObject:
   - component: {fileID: 3577206023433375622}
   - component: {fileID: 5751295228553769416}
   - component: {fileID: 9197738598391337099}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +436,7 @@ GameObject:
   - component: {fileID: 2696289338307428493}
   - component: {fileID: 5888186611049173466}
   - component: {fileID: 7385229979320993635}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +517,7 @@ GameObject:
   - component: {fileID: 4129366414334196938}
   - component: {fileID: 543717737691298017}
   - component: {fileID: 2272276912973133767}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +598,7 @@ GameObject:
   - component: {fileID: 4137472346906190408}
   - component: {fileID: 8107254215106853039}
   - component: {fileID: 5204532569887102881}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +679,7 @@ GameObject:
   - component: {fileID: 317331659018860998}
   - component: {fileID: 4288243036500497135}
   - component: {fileID: 7666313962885214381}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +760,7 @@ GameObject:
   - component: {fileID: 456824604024124788}
   - component: {fileID: 426810360597563514}
   - component: {fileID: 5225506290320345529}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: castle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

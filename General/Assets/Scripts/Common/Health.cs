@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        Debug.Log(this.name + " being attacked, amount: " + amount);
+        //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
         if(m_CurrentHealth <= 0 && !m_Dead)
         {
