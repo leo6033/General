@@ -9,6 +9,8 @@ public class Attack : MonoBehaviour
 
     public void AttackEnemy(Collider collider, float attackRate)
     {
+        Vector3 forward = collider.transform.position - transform.position;
+        transform.forward = forward.normalized;
         if(Time.time > nextAttackTime)
         {
             Debug.Log(collider.name);

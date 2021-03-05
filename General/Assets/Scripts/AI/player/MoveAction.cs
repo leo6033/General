@@ -21,6 +21,8 @@ public class MoveAction : Action
         if (controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending)
         {
             // 到目标点后，改变状态为 standby
+            controller.rigidbody.velocity = Vector3.zero;
+            controller.navMeshAgent.isStopped = true;
             controller.TransitionToState(standby);
         }
     }

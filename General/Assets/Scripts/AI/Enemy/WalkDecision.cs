@@ -14,7 +14,7 @@ public class WalkDecision : Decision
 
     private bool Walk(StateController controller)
     {
-        Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.attackRange, 1<<8);
+        Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.visionRange, 1<<8);
         foreach (Collider c in objects)
         {
             if(c.tag == "House")
@@ -44,7 +44,7 @@ public class WalkDecision : Decision
         //计算两个向量间的夹角
         float angle = Mathf.Acos(Vector3.Dot(mVec.normalized, tVec.normalized)) * Mathf.Rad2Deg;
         //Debug.Log(angle + "  " + distance + "   " + controller.stats.attackRange);
-        if (distance < controller.stats.attackRange)// && angle <= 180)
+        if (distance < controller.stats.attackRange && angle <= 180)
         {
             return true;
             //Ray DetectRay = new Ray(controller.transform.position, tVec.normalized * controller.stats.attackRange);

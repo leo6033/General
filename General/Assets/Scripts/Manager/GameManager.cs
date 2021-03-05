@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
         MapCreater mapCreater = GetComponent<MapCreater>();
 
         CreatePlayer();
-        CreateEnemy(mapCreater.houseTransform);
+        print(mapCreater.houses.Count);
+        CreateEnemy(mapCreater.houses);
     }
 
-    private void CreateEnemy(List<Transform> houseTransform)
+    private void CreateEnemy(List<GameObject> houseTransform)
     {
         for(int i = 0; i < m_EnemyPrefabs.Length; i++)
         {

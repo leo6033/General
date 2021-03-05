@@ -30,7 +30,7 @@ public class MapCreater : MonoBehaviour
     public int obstacleNumMin;
     public int obstacleNumMax;
 
-    [HideInInspector] public List<Transform> houseTransform;
+    [HideInInspector] public List<GameObject> houses;
 
 
     private PlaneCubeManager m_PlaneCubeManager;
@@ -181,7 +181,7 @@ public class MapCreater : MonoBehaviour
         float y = (float)(transform.position.y + m_CubeScript.height + castlePre.transform.localScale.y * 0.5f);
 
         GameObject castle = GameObject.Instantiate(castlePre, new Vector3(z, y, x), castlePre.transform.rotation);
-        houseTransform.Add(castle.transform);
+        houses.Add(castle);
         for (int xi = x - 1; xi <= x + 1; xi++)
         {
             for (int zi = z - 1; zi <= z + 1; zi++)
@@ -245,7 +245,7 @@ public class MapCreater : MonoBehaviour
             float y = (float)(transform.position.y + m_CubeScript.height + housePre.transform.localScale.y * 0.05f);
 
             GameObject house = GameObject.Instantiate(housePre, new Vector3(z, y, x), housePre.transform.rotation);
-            houseTransform.Add(house.transform);
+            houses.Add(house);
             m_CubeScript.isShowGrid = false;
         }
     }

@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [HideInInspector] public GameObject m_Instance;
 
-    public void Setup(List<Transform> housePointList)
+    public void Setup(List<GameObject> housePointList)
     {
         StateController[] stateControllers = m_Instance.GetComponentsInChildren<StateController>();
         foreach (StateController stateController in stateControllers)

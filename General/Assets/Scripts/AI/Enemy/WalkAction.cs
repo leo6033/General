@@ -12,20 +12,22 @@ public class WalkAction : Action
 
     private void Walk(StateController controller)
     {
-        controller.navMeshAgent.SetDestination(controller.targetPoint.position);
+        controller.navMeshAgent.SetDestination(controller.targetHouse.transform.position + controller.RelativePosition);
+        controller.rigidbody.velocity = Vector3.zero;
         controller.navMeshAgent.isStopped = false;
 
-        if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || controller.targetPoint != null)
+        if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || !controller.targetHouse.activeSelf)
         {
-            controller.pointList.Remove(controller.targetPoint);
+            controller.houseList.Remove(controller.targetHouse);
+            //Debug.Log(controller.pointList.Count);
             float distance = Mathf.Infinity;
-            foreach (Transform point in controller.pointList)
+            foreach (GameObject house in controller.houseList)
             {
-                float tmpDistance = Vector3.Distance(controller.transform.position, point.position);
+                float tmpDistance = Vector3.Distance(controller.transform.parent.position, house.transform.position);
                 if (tmpDistance < distance)
                 {
                     distance = tmpDistance;
-                    controller.targetPoint = point;
+                    controller.targetHouse = house;
                 }
             }
         }
