@@ -20,14 +20,17 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !m_Selected)
         {
-            PlaneCubeManager.showGrid();
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
             {
                 go = hit.transform.parent.gameObject;    //获得选中物体
                 if (go != null)
+                {
+                    PlaneCubeManager.showGrid();
                     m_Selected = true;
+                }
             }
         }
         else if (Input.GetMouseButtonDown(0) && m_Selected)
