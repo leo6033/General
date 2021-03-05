@@ -13,7 +13,6 @@ public class WalkAction : Action
     private void Walk(StateController controller)
     {
         controller.navMeshAgent.SetDestination(controller.targetHouse.transform.position + controller.RelativePosition);
-        controller.rigidbody.velocity = Vector3.zero;
         controller.navMeshAgent.isStopped = false;
 
         if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || !controller.targetHouse.activeSelf)

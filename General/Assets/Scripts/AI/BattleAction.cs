@@ -16,14 +16,12 @@ public class BattleAction : Action
         if(controller.stats.attackRange < Vector3.Distance(controller.transform.position, controller.attackObject.transform.position) && controller.attackObject.tag != "House")
         {
             controller.navMeshAgent.isStopped = false;
-            //controller.rigidbody.velocity = Vector3.zero;
             //controller.navMeshAgent.velocity = Vector3.zero;
             controller.navMeshAgent.SetDestination(controller.attackObject.transform.position);
         }
         else if (controller.CheckifCountDownElapsed(controller.stats.attackRate))
         {
             controller.navMeshAgent.isStopped = true;
-            controller.rigidbody.velocity = Vector3.zero;
             controller.navMeshAgent.velocity = Vector3.zero;
             controller.attack.AttackEnemy(controller.attackObject, controller.stats.attackRate);
         }

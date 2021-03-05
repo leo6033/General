@@ -18,7 +18,6 @@ public class StateController : MonoBehaviour
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
     [HideInInspector] public Vector3 RelativePosition;
-    [HideInInspector] public Rigidbody rigidbody;
 
     private bool aiActive = true;
 
@@ -26,7 +25,6 @@ public class StateController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
-        rigidbody = GetComponent<Rigidbody>();
     }
 
     public void SetupAI(bool aiActivationFromManager, List<GameObject> HouseFromManager)
