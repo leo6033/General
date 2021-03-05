@@ -44,7 +44,7 @@ public class WalkDecision : Decision
         //计算两个向量间的夹角
         float angle = Mathf.Acos(Vector3.Dot(mVec.normalized, tVec.normalized)) * Mathf.Rad2Deg;
         //Debug.Log(angle + "  " + distance + "   " + controller.stats.attackRange);
-        if (distance < controller.stats.attackRange && angle <= 90)
+        if (distance < controller.stats.attackRange)// && angle <= 180)
         {
             return true;
             //Ray DetectRay = new Ray(controller.transform.position, tVec.normalized * controller.stats.attackRange);

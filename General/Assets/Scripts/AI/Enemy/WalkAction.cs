@@ -15,19 +15,19 @@ public class WalkAction : Action
         controller.navMeshAgent.SetDestination(controller.targetPoint.position);
         controller.navMeshAgent.isStopped = false;
 
-        //if(controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending)
-        //{
-        //    controller.pointList.Remove(controller.targetPoint);
-        //    float distance = Mathf.Infinity;
-        //    foreach(Transform point in controller.pointList)
-        //    {
-        //        float tmpDistance = Vector3.Distance(controller.transform.position, point.position);
-        //        if (tmpDistance < distance)
-        //        {
-        //            distance = tmpDistance;
-        //            controller.targetPoint = point;
-        //        }
-        //    }
-        //}
+        if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || controller.targetPoint != null)
+        {
+            controller.pointList.Remove(controller.targetPoint);
+            float distance = Mathf.Infinity;
+            foreach (Transform point in controller.pointList)
+            {
+                float tmpDistance = Vector3.Distance(controller.transform.position, point.position);
+                if (tmpDistance < distance)
+                {
+                    distance = tmpDistance;
+                    controller.targetPoint = point;
+                }
+            }
+        }
     }
 }
