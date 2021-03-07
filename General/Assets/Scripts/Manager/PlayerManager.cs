@@ -6,9 +6,9 @@ public class PlayerManager : MonoBehaviour
 {
     [HideInInspector] public GameObject m_Instance;
 
-    public void Setup()
+    public void Setup(out List<StateController> stateControllers)
     {
-        StateController[] stateControllers = m_Instance.GetComponentsInChildren<StateController>();
+        stateControllers = new List<StateController>(m_Instance.GetComponentsInChildren<StateController>());
         foreach(StateController stateController in stateControllers)
         {
             stateController.SetupAI(true, null);
