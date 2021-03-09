@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public Transform trans;
 
     bool isRotating = false;
+    bool isTranslate = false;
     Vector3 rot;
 
     // Update is called once per frame
@@ -55,27 +56,45 @@ public class CameraController : MonoBehaviour
             {
                 transform.Translate(-trans.forward * translateSpeed * Time.deltaTime, Space.World);
             }
+            if (Input.GetMouseButtonDown(2))
+            {
+                isTranslate = true;
+            }
+            else if (Input.GetMouseButtonUp(2))
+            {
+                isTranslate = false;
+            }
+            if (isTranslate)
+            {
+                var mouse_x = Input.GetAxis("Mouse X");
+                var mouse_y = Input.GetAxis("Mouse Y");
+                Vector3 vec = new Vector3(mouse_x, 0, mouse_y);
+                transform.Translate(vec, Space.World);
+            }
         }
     }
 
     private void RotateUpdate()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (!isTranslate)
         {
-            isRotating = true;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            isRotating = false;
-        }
-        if (isRotating)
-        {
-            //transform.RotateAround(Vector3.zero, Vector3.up, rotationSpeed * Time.deltaTime); //摄像机围绕目标旋转
-            var mouse_x = Input.GetAxis("Mouse X");//获取鼠标X轴移动
-            //var mouse_y = -Input.GetAxis("Mouse Y");//获取鼠标Y轴移动
+            if (Input.GetMouseButtonDown(1))
+            {
+                isRotating = true;
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                isRotating = false;
+            }
+            if (isRotating)
+            {
+                //transform.RotateAround(Vector3.zero, Vector3.up, rotationSpeed * Time.deltaTime); //摄像机围绕目标旋转
+                var mouse_x = Input.GetAxis("Mouse X");//获取鼠标X轴移动
+                                                       //var mouse_y = -Input.GetAxis("Mouse Y");//获取鼠标Y轴移动
 
-            transform.RotateAround(Vector3.zero, Vector3.up, mouse_x * 5);
-            //transform.RotateAround(Vector3.zero, transform.right, mouse_y * 5);
+                transform.RotateAround(Vector3.zero, Vector3.up, mouse_x * 5);
+                //transform.RotateAround(Vector3.zero, transform.right, mouse_y * 5);
+            }
         }
     }
 }
