@@ -8,6 +8,7 @@ TagManager:
   - Legion
   - PlaneCube
   - House
+  - Castle
   layers:
   - Default
   - TransparentFX

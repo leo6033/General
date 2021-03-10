@@ -9,14 +9,26 @@ public class Health : MonoBehaviour
     private bool m_Dead;
     private float m_CurrentHealth;
 
+    public SkinnedMeshRenderer skinnedMeshRenderer;
+
     public void TakeDamage(float amount)
     {
+        if(skinnedMeshRenderer != null)
+            skinnedMeshRenderer.material.color = Color.white;
         //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
         if(m_CurrentHealth <= 0 && !m_Dead)
         {
             OnDeath();
         }
+        StartCoroutine(ColorReset());
+    }
+
+    IEnumerator ColorReset()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (skinnedMeshRenderer != null)
+            skinnedMeshRenderer.material.color = Color.black;
     }
 
     public void OnEnable()
