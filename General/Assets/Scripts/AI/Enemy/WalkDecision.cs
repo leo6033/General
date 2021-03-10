@@ -17,7 +17,7 @@ public class WalkDecision : Decision
         Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.visionRange, 1<<8);
         foreach (Collider c in objects)
         {
-            if(c.tag == "House")
+            if(c.tag == "House" || c.tag == "Castle")
             {
                 controller.attackObject = c;
                 return true;
