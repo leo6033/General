@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetMouseButtonDown(0) && m_Selected)
+        else if (Input.GetMouseButtonDown(1) && m_Selected)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
