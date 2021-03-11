@@ -15,9 +15,9 @@ public class PlaneCubeManager : MonoBehaviour
     {
         return cubes[i];
     }
-    public Transform getCube(int x, int z)
+    public Transform getCube(float x, float z)
     {
-        int i = x * 30 + z;
+        int i = (int)((x+10)*7.5 + (z+15)/2);
         return cubes[i];
     }
 
@@ -34,6 +34,14 @@ public class PlaneCubeManager : MonoBehaviour
         foreach (Transform cube in cubes)
         {
             cube.GetComponent<PlaneCube>().cancelGrid();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            showGrid();
         }
     }
 }
