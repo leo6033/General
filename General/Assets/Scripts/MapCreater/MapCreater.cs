@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class MapCreater : MonoBehaviour
 {
+    public NavMeshAgent player;
+
     [Header("地板位置示意 /*脚本开始时会删除*/")]
     public GameObject Plane;
 
     [Header("地图长宽")]
-    public int widthSize = 20;
-    public int lengthSize = 30;
+    public int widthSize = 10;
+    public int lengthSize = 15;
     public int cubeSize = 2;
 
     [Header("地图元素")]
@@ -19,6 +21,7 @@ public class MapCreater : MonoBehaviour
     public GameObject castlePre;
     public GameObject housePre;
     public GameObject obstaclePre;
+    public GameObject ladderPre;
 
     [Header("高台数量")]
     public int platformNum;
@@ -47,33 +50,41 @@ public class MapCreater : MonoBehaviour
     //初始位置
     private float x;
     private float z;
-
+    private GameObject plane;
+    private GameObject castle;
     void Awake()
     {
         Destroy(Plane);
-        x = -widthSize / 2;
-        z = -lengthSize / 2;
-        m_PlaneCubeManager = GetComponent<PlaneCubeManager>();
 
+        plane = new GameObject();
+        
+        x = -widthSize;
+        z = -lengthSize;
+        m_PlaneCubeManager = GetComponent<PlaneCubeManager>();
+        
         createPlane();
-        createCastle();
+        createPlatform();
         createHouse();
-        //createPlatform();
-        createObstacle();
+        createCastle();
+        //createObstacle();
+
+        plane.AddComponent<NavMeshSurface>();
+        plane.GetComponent<NavMeshSurface>().collectObjects = CollectObjects.Children;
+        plane.GetComponent<NavMeshSurface>().BuildNavMesh();
+        player.SetDestination(castle.transform.position);
     }
     void createPlane()
     {
         float xi = x;
         float zi = z;
-        GameObject plane = new GameObject();
-        plane.AddComponent<NavMeshSurface>();
 
         int cnt = 0;
-        for (int i = 0; i < widthSize/cubeSize; i++, xi += cubeSize)
+        for (int i = 0; i < widthSize; i++, xi += cubeSize)
         {
-            for (int j = 0; j < lengthSize/cubeSize; j++, zi += cubeSize)
+            for (int j = 0; j < lengthSize; j++, zi += cubeSize)
             {
                 GameObject cube = GameObject.Instantiate(cubePre, new Vector3(xi, transform.position.y, zi), cubePre.transform.rotation);
+                cube.transform.localScale = new Vector3(cube.transform.localScale.x * cubeSize, cube.transform.localScale.y, cube.transform.localScale.z * cubeSize);
                 cube.transform.parent = plane.transform;
                 cube.name = "Cube" + cnt++;
                 m_PlaneCubeManager.AddCube(cube.transform);
@@ -81,14 +92,132 @@ public class MapCreater : MonoBehaviour
             zi = z;
         }
 
-        plane.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
-
     void createPlatform()
     {
+        int trycnt = 0;
+        for(int i = 0; i < platformNum; i++)
+        {
+            trycnt++;
+            if (trycnt > 30) return;
+            
+            int platSize = (int)(Random.value * (platformSizeMax - platformSizeMin) + platformSizeMin);
+            int platHeight = (int)(Random.value * (platformHeightMax - platformHeightMin) + platformHeightMin);
+            float xi = (int)(Random.value * (widthSize - platSize)) + x;
+            float zi = (int)(Random.value * (lengthSize - platSize)) + z;
 
+            Dictionary<Transform,Transform> secPlats = new Dictionary<Transform,Transform>();
+            float w = xi;
+            float l = zi;
+            bool canBuild = true;
+            for (float j = 0; j < platSize; j++, w += cubeSize)
+            {
+                for (float k = 0; k < platSize; k++, l += cubeSize)
+                {
+                    m_CubeScript = m_PlaneCubeManager.getCube(w, l).GetComponent<PlaneCube>();
+                    if(m_CubeScript.height != 0.25f)
+                    {
+                        canBuild = false;
+                        break;
+                    }
+
+                }
+                l = zi;
+            }
+            if (!canBuild)
+            {
+                i--;
+                continue;
+            }
+            w = xi;
+            l = zi;
+            for (int j = 0; j < platSize; j++,w+=cubeSize)
+            {
+                for(int k = 0; k < platSize; k++,l+=cubeSize)
+                {
+                    m_CubeScript = m_PlaneCubeManager.getCube(w, l).GetComponent<PlaneCube>();
+                    Transform platCube = m_CubeScript.transform;
+                    
+                    platCube.localScale = new Vector3(platCube.localScale.x, platHeight, platCube.localScale.z);
+                    float y = platCube.localScale.y / 2 - m_CubeScript.height;
+                    platCube.position = new Vector3(platCube.position.x, y, platCube.position.z);
+                    m_CubeScript.height = platCube.localScale.y/2 + y;
+                    platCube.name = "高台" + i;
+
+                    if(j == 0)
+                    {
+                        Transform secPlat = m_PlaneCubeManager.getCube(w - cubeSize, l);
+                        if (secPlat != null) secPlats.Add(secPlat, platCube);
+                    }
+                    if(j == platSize - 1)
+                    {
+                        Transform secPlat = m_PlaneCubeManager.getCube(w + cubeSize, l);
+                        if (secPlat != null) secPlats.Add(secPlat, platCube);
+                    }
+                    if(k == 0)
+                    {
+                        Transform secPlat = m_PlaneCubeManager.getCube(w, l - cubeSize);
+                        if (secPlat != null) secPlats.Add(secPlat, platCube);
+                    }
+                    if (k == platSize - 1)
+                    {
+                        Transform secPlat = m_PlaneCubeManager.getCube(w, l + cubeSize);
+                        if (secPlat != null) secPlats.Add(secPlat, platCube);
+                    }
+
+                }
+                l = zi;
+            }
+            createSecondaryPlat(secPlats, platHeight-1);
+        }
     }
 
+    void createSecondaryPlat(Dictionary<Transform,Transform> secPlats,int height)
+    {
+        if (height == 0) return;
+        Transform[] secs = new Transform[secPlats.Keys.Count];
+        secPlats.Keys.CopyTo(secs,0);
+        int i = 0;
+        do
+        {
+            i = (int)(Random.value * secs.Length);
+        } while (i >= secs.Length || i < 0);
+
+        Transform secPlat = secs[i];
+        Transform oriPlat = null;
+        secPlats.TryGetValue(secPlat, out oriPlat);
+
+        m_CubeScript = secPlat.GetComponent<PlaneCube>();
+        secPlat.localScale = new Vector3(secPlat.localScale.x, height, secPlat.localScale.z);
+        float y = secPlat.localScale.y / 2 - m_CubeScript.height;
+        secPlat.position = new Vector3(secPlat.position.x, y, secPlat.position.z);
+        m_CubeScript.height = secPlat.localScale.y / 2 + y;
+
+        //添加navMeshLink
+        Vector3 pos = secPlat.position;
+        float hei = (float)(transform.position.y + m_CubeScript.height + ladderPre.transform.localScale.y * 0.05f);
+        pos.y = hei;
+        GameObject ladder = GameObject.Instantiate(ladderPre, pos, ladderPre.transform.rotation);
+        ladder.AddComponent<NavMeshLink>();
+        NavMeshLink nml = ladder.GetComponent<NavMeshLink>();
+        nml.startPoint = oriPlat.position - ladder.transform.position;
+        nml.endPoint = secPlat.position - ladder.transform.position;
+        nml.width = 2;
+        
+
+        //生成下一梯度
+        secPlats.Clear();
+        Transform secPlatNew1 = m_PlaneCubeManager.getCube(secPlat.position.x + cubeSize, secPlat.position.z);
+        if (secPlatNew1 != null && secPlatNew1.GetComponent<PlaneCube>().height == 0.25) secPlats.Add(secPlatNew1, secPlat);
+        Transform secPlatNew2 = m_PlaneCubeManager.getCube(secPlat.position.x - cubeSize, secPlat.position.z);
+        if (secPlatNew2 != null && secPlatNew2.GetComponent<PlaneCube>().height == 0.25) secPlats.Add(secPlatNew2, secPlat);
+        Transform secPlatNew3 = m_PlaneCubeManager.getCube(secPlat.position.x, secPlat.position.z + cubeSize);
+        if (secPlatNew3 != null && secPlatNew3.GetComponent<PlaneCube>().height == 0.25) secPlats.Add(secPlatNew3, secPlat);
+        Transform secPlatNew4 = m_PlaneCubeManager.getCube(secPlat.position.x, secPlat.position.z - cubeSize);
+        if (secPlatNew4 != null && secPlatNew4.GetComponent<PlaneCube>().height == 0.25) secPlats.Add(secPlatNew4, secPlat);
+
+        createSecondaryPlat(secPlats, height - 1);
+    }
 
     void createCastle()
     {
@@ -100,7 +229,7 @@ public class MapCreater : MonoBehaviour
         float y = (float)(transform.position.y + m_CubeScript.height + castlePre.transform.localScale.y);
         pos.y = y;
         
-        GameObject castle = GameObject.Instantiate(castlePre, pos, castlePre.transform.rotation);
+        castle = GameObject.Instantiate(castlePre, pos, castlePre.transform.rotation);
         houses.Add(castle);
     }
 

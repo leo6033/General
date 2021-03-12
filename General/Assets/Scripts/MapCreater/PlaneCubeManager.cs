@@ -11,14 +11,22 @@ public class PlaneCubeManager : MonoBehaviour
         cubes.Add(cube);
     }
 
+    public int getCubeCount()
+    {
+        return cubes.Count;
+    }
+
     public Transform getCube(int i)
     {
         return cubes[i];
     }
     public Transform getCube(float x, float z)
     {
+        if (x < -10 || x > 8 || z < -15 || z > 13) return null;
+
         int i = (int)((x+10)*7.5 + (z+15)/2);
-        return cubes[i];
+        if (i >= cubes.Count || i < 0) return null;
+        else return cubes[i];
     }
 
     public void showGrid()
