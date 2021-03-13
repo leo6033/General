@@ -63,15 +63,16 @@ public class MapCreater : MonoBehaviour
         m_PlaneCubeManager = GetComponent<PlaneCubeManager>();
         
         createPlane();
+        //createCastle();
         createPlatform();
-        createHouse();
-        createCastle();
-        //createObstacle();
+        createHouse(); 
+        createObstacle();
 
         plane.AddComponent<NavMeshSurface>();
         plane.GetComponent<NavMeshSurface>().collectObjects = CollectObjects.Children;
         plane.GetComponent<NavMeshSurface>().BuildNavMesh();
         player.SetDestination(castle.transform.position);
+
     }
     void createPlane()
     {
@@ -99,7 +100,7 @@ public class MapCreater : MonoBehaviour
         for(int i = 0; i < platformNum; i++)
         {
             trycnt++;
-            if (trycnt > 30) return;
+            if (trycnt > platformNum * 2) return;
             
             int platSize = (int)(Random.value * (platformSizeMax - platformSizeMin) + platformSizeMin);
             int platHeight = (int)(Random.value * (platformHeightMax - platformHeightMin) + platformHeightMin);
@@ -165,15 +166,22 @@ public class MapCreater : MonoBehaviour
                         if (secPlat != null) secPlats.Add(secPlat, platCube);
                     }
 
+                    if (castle == null)
+                    {
+                        castlePos.position = platCube.transform.position;
+                        createCastle();
+                    }
                 }
                 l = zi;
             }
-            createSecondaryPlat(secPlats, platHeight-1);
+            createSecondaryPlat(secPlats, platHeight-1,0);
         }
     }
 
-    void createSecondaryPlat(Dictionary<Transform,Transform> secPlats,int height)
+    void createSecondaryPlat(Dictionary<Transform,Transform> secPlats,int height,int tryCnt)
     {
+        tryCnt++;
+        if (tryCnt > 30) return;
         if (height == 0) return;
         Transform[] secs = new Transform[secPlats.Keys.Count];
         secPlats.Keys.CopyTo(secs,0);
@@ -193,17 +201,24 @@ public class MapCreater : MonoBehaviour
         secPlat.position = new Vector3(secPlat.position.x, y, secPlat.position.z);
         m_CubeScript.height = secPlat.localScale.y / 2 + y;
 
-        //添加navMeshLink
-        Vector3 pos = secPlat.position;
-        float hei = (float)(transform.position.y + m_CubeScript.height + ladderPre.transform.localScale.y * 0.05f);
-        pos.y = hei;
-        GameObject ladder = GameObject.Instantiate(ladderPre, pos, ladderPre.transform.rotation);
-        ladder.AddComponent<NavMeshLink>();
-        NavMeshLink nml = ladder.GetComponent<NavMeshLink>();
-        nml.startPoint = oriPlat.position - ladder.transform.position;
-        nml.endPoint = secPlat.position - ladder.transform.position;
-        nml.width = 2;
-        
+        //添加OffMeshLink
+        Vector3 startPos = secPlat.position;
+        float hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 0.05f);
+        startPos.y = hei;
+        GameObject startPoint = new GameObject();
+        startPoint.name = "startPoint";
+        startPoint.transform.position = startPos;
+        Vector3 endPos = oriPlat.position;
+        hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 1f);
+        endPos.y = hei;
+        GameObject endPoint = new GameObject();
+        endPoint.name = "EndPoint";
+        endPoint.transform.position = endPos;
+        oriPlat.gameObject.AddComponent<OffMeshLink>();
+        OffMeshLink oml = oriPlat.GetComponent<OffMeshLink>();
+        oml.startTransform = startPoint.transform;
+        oml.endTransform = endPoint.transform;
+        oml.area = 2;//walkable = 0;not walkable = 1; jump = 2
 
         //生成下一梯度
         secPlats.Clear();
@@ -216,7 +231,7 @@ public class MapCreater : MonoBehaviour
         Transform secPlatNew4 = m_PlaneCubeManager.getCube(secPlat.position.x, secPlat.position.z - cubeSize);
         if (secPlatNew4 != null && secPlatNew4.GetComponent<PlaneCube>().height == 0.25) secPlats.Add(secPlatNew4, secPlat);
 
-        createSecondaryPlat(secPlats, height - 1);
+        createSecondaryPlat(secPlats, height - 1, tryCnt);
     }
 
     void createCastle()
