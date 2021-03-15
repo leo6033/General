@@ -2,7 +2,7 @@
 
 public class PlaneCube : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public bool isShowGrid = true;
 
     public float height;
