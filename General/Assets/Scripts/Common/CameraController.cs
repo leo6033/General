@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
     {
         if (!isRotating)
         {
-            if (Input.mousePosition.x >= Screen.width * 0.98 && transform.position.x <= 15)
+            if (Input.mousePosition.x >= Screen.width * 0.98 && transform.position.x <= 10)
             {
                 transform.Translate(trans.right * translateSpeed * Time.deltaTime, Space.World);
             }
@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
                 transform.Translate(-trans.right * translateSpeed * Time.deltaTime, Space.World);
             }
 
-            if (Input.mousePosition.y >= Screen.height * 0.98 && transform.position.z <= 15)
+            if (Input.mousePosition.y >= Screen.height * 0.98 && transform.position.z <= 10)
             {
                 transform.Translate(trans.forward * translateSpeed * Time.deltaTime, Space.World);
             }
@@ -68,8 +68,9 @@ public class CameraController : MonoBehaviour
             {
                 var mouse_x = Input.GetAxis("Mouse X");
                 var mouse_y = Input.GetAxis("Mouse Y");
-                Vector3 vec = new Vector3(mouse_x, 0, mouse_y);
-                transform.Translate(vec, Space.World);
+                Vector3 right = mouse_x * trans.right;
+                Vector3 forward = mouse_y * trans.forward;
+                transform.Translate(right + forward, Space.World);
             }
         }
     }
