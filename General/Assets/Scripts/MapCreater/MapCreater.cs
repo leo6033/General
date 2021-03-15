@@ -71,7 +71,7 @@ public class MapCreater : MonoBehaviour
         plane.AddComponent<NavMeshSurface>();
         plane.GetComponent<NavMeshSurface>().collectObjects = CollectObjects.Children;
         plane.GetComponent<NavMeshSurface>().BuildNavMesh();
-        player.SetDestination(castle.transform.position);
+        //player.SetDestination(castle.transform.position);
 
     }
     void createPlane()

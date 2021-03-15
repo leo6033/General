@@ -47,9 +47,9 @@ public class PlaneCubeManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            showGrid();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    showGrid();
+        //}
     }
 }

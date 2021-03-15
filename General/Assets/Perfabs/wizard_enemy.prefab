@@ -14,6 +14,19 @@ CapsuleCollider:
   m_Height: 9.379374
   m_Direction: 1
   m_Center: {x: -1.4671853, y: 4.1896863, z: -0.20078063}
+--- !u!114 &-6885112718823186852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7625515523609700010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2358bd27d9268b947ac4c68547338de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 1279679429883895397}
 --- !u!195 &1689927004
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -73,7 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartingHealth: 100
-  skinnedMeshRenderer: {fileID: 1279679429883895397}
 --- !u!114 &1689927009
 MonoBehaviour:
   m_ObjectHideFlags: 0
