@@ -26,10 +26,12 @@ public class Movement : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
             {
                 go = hit.transform.parent.gameObject;    //获得选中物体
-                if (go != null)
+                Debug.Log(go.gameObject.name);
+                if (go != null && go.tag == "Legion")
                 {
                     PlaneCubeManager.showGrid();
                     m_Selected = true;
+                    go.GetComponent<PlayerManager>().setColor(Color.white);
                 }
             }
         }
@@ -49,6 +51,7 @@ public class Movement : MonoBehaviour
                         stateController.targetPoint = m_TargetPoint;
                         stateController.currentState = m_WalkState;
                     }
+                    go.GetComponent<PlayerManager>().setColor(Color.black);
                     m_Selected = false;
                     PlaneCubeManager.cancleGrid();
                     go = null;

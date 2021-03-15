@@ -14,14 +14,18 @@ public class Attack : MonoBehaviour
         transform.forward = forward.normalized;
         if(Time.time > nextAttackTime)
         {
-            skinnedMeshRenderer.material.color = Color.red;
+            //skinnedMeshRenderer.material.color = Color.red;
             Debug.Log(collider.name);
-            nextAttackTime = Time.time + attackRate;
+
             // TODO: 伤害判定等
             Health targetHealth = collider.GetComponent<Health>();
+            if (targetHealth.isActiveAndEnabled)
+            {
+                targetHealth.TakeDamage(30);
+                nextAttackTime = Time.time + attackRate;
+            }
             //Debug.Log(collider.name);
-            targetHealth.TakeDamage(30);
-            StartCoroutine(ColorReset(attackRate));
+            //StartCoroutine(ColorReset(attackRate));
         }
     }
 

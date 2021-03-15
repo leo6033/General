@@ -8,27 +8,25 @@ public class Health : MonoBehaviour
 
     private bool m_Dead;
     private float m_CurrentHealth;
-
-    public SkinnedMeshRenderer skinnedMeshRenderer;
+    private LegionUtil[] m_LegionUtils;
 
     public void TakeDamage(float amount)
     {
-        if(skinnedMeshRenderer != null)
-            skinnedMeshRenderer.material.color = Color.white;
         //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
         if(m_CurrentHealth <= 0 && !m_Dead)
         {
             OnDeath();
         }
-        StartCoroutine(ColorReset());
-    }
-
-    IEnumerator ColorReset()
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (skinnedMeshRenderer != null)
-            skinnedMeshRenderer.material.color = Color.black;
+        foreach (LegionUtil legion in m_LegionUtils)
+        {
+            if (legion.getColor() != Color.white)
+            {
+                legion.setColor(Color.red);
+            }
+            else
+                break;
+        }
     }
 
     public void OnEnable()
@@ -38,10 +36,10 @@ public class Health : MonoBehaviour
     }
 
     // Update is called once per frame
-   public void OnDeath()
+    public void OnDeath()
     {
         m_Dead = true;
-
+        StopAllCoroutines();
         gameObject.SetActive(false);
     }
 }
