@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundPlaying()
     {
-        m_MessageText.text = string.Empty; ;
+        m_MessageText.text = string.Empty;
         while (!CheckEnd())
         {
             yield return null;
@@ -97,24 +97,27 @@ public class GameManager : MonoBehaviour
 
     private void CreateEnemy(List<GameObject> houseTransform)
     {
-        for(int i = 0; i < m_EnemyPrefabs.Length; i++)
+        enemines = new List<StateController>();
+        for (int i = 0; i < m_EnemyPrefabs.Length; i++)
         {
             GameObject legion = Instantiate(m_EnemyPrefabs[i].LegionPrefeb, m_EnemyPrefabs[i].m_LegionPosition.position, m_EnemyPrefabs[i].m_LegionPosition.rotation) as GameObject;
             EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
             enemyManager.m_Instance = legion;
-            enemyManager.Setup(houseTransform, out enemines);
+            enemyManager.Setup(houseTransform, ref enemines);
         }
     }
 
     private void CreatePlayer()
     {
+        players = new List<StateController>();
         for(int i = 0; i < m_PlayerPrefabs.Length; i++)
         {
             GameObject legion = Instantiate(m_PlayerPrefabs[i].LegionPrefeb, m_PlayerPrefabs[i].m_LegionPosition.position, m_PlayerPrefabs[i].m_LegionPosition.rotation) as GameObject;
             PlayerManager playerManager = legion.GetComponent<PlayerManager>();
             playerManager.m_Instance = legion;
-            playerManager.Setup(out players);
+            playerManager.Setup(ref players);
         }
+        Debug.Log(players.Count);
     }
 
     private string EndMessage()

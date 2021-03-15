@@ -6,12 +6,15 @@ public class EnemyManager : MonoBehaviour
 {
     [HideInInspector] public GameObject m_Instance;
 
-    public void Setup(List<GameObject> housePointList, out List<StateController> stateControllers)
+    public void Setup(List<GameObject> housePointList, ref List<StateController> stateControllers)
     {
-        stateControllers = new List<StateController>(m_Instance.GetComponentsInChildren<StateController>());
-        foreach (StateController stateController in stateControllers)
+        List<StateController> tmp = new List<StateController>(m_Instance.GetComponentsInChildren<StateController>());
+        foreach (StateController stateController in tmp)
         {
             stateController.SetupAI(true, housePointList);
+            stateControllers.Add(stateController);
         }
     }
+
+
 }
