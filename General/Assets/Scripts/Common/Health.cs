@@ -18,15 +18,15 @@ public class Health : MonoBehaviour
         {
             OnDeath();
         }
-        foreach (LegionUtil legion in m_LegionUtils)
-        {
-            if (legion.getColor() != Color.white)
-            {
-                legion.setColor(Color.red);
-            }
-            else
-                break;
-        }
+        //foreach (LegionUtil legion in m_LegionUtils)
+        //{
+        //    if (legion.getColor() != Color.white)
+        //    {
+        //        legion.setColor(Color.red);
+        //    }
+        //    else
+        //        break;
+        //}
     }
 
     public void OnEnable()

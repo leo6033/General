@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cb46b02b651f94a816276daf9c3c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 30
-  skinnedMeshRenderer: {fileID: 0}
+  m_StartingHealth: 100
 --- !u!65 &-8758988363727803279
 BoxCollider:
   m_ObjectHideFlags: 0
