@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour
                 var mouse_y = Input.GetAxis("Mouse Y");
                 Vector3 right = mouse_x * trans.right;
                 Vector3 forward = mouse_y * trans.forward;
-                transform.Translate(right + forward, Space.World);
+                transform.Translate(-right - forward, Space.World);
             }
         }
     }
