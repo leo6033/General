@@ -11,14 +11,45 @@ public class PlaneCubeManager : MonoBehaviour
         cubes.Add(cube);
     }
 
+    public int getCubeCount()
+    {
+        return cubes.Count;
+    }
+
     public Transform getCube(int i)
     {
         return cubes[i];
     }
-    public Transform getCube(int x, int z)
+    public Transform getCube(float x, float z)
     {
-        int i = x * 30 + z;
-        return cubes[i];
+        if (x < -10 || x > 8 || z < -15 || z > 13) return null;
+
+        int i = (int)((x+10)*7.5 + (z+15)/2);
+        if (i >= cubes.Count || i < 0) return null;
+        else return cubes[i];
     }
 
+    public void showGrid()
+    {
+        foreach (Transform cube in cubes)
+        {
+            cube.GetComponent<PlaneCube>().showGrid();
+        }
+    }
+
+    public void cancleGrid()
+    {
+        foreach (Transform cube in cubes)
+        {
+            cube.GetComponent<PlaneCube>().cancelGrid();
+        }
+    }
+
+    private void Update()
+    {
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    showGrid();
+        //}
+    }
 }

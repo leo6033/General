@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandbyDecision : MonoBehaviour
+[CreateAssetMenu(menuName = "AI/Decisions/Player/Standby")]
+public class StandbyDecision : Decision
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool Decide(StateController controller)
     {
-        
+        bool standby = Standby(controller);
+        return standby;
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool Standby(StateController controller)
     {
-        
+        Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.visionRange, 1 << 9);
+        foreach (Collider c in objects)
+        {
+            // TODO: 设置攻击目标
+            controller.attackObject = c;
+            return true;
+        }
+        return false;
     }
 }

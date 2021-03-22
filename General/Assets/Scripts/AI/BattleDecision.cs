@@ -7,12 +7,14 @@ public class BattleDecision : Decision
 {
     public override bool Decide(StateController controller)
     {
-        bool encounter = Battle(controller);
-        return encounter;
+        bool battle = Battle(controller);
+        return battle;
     }
 
     private bool Battle(StateController controller)
     {
+        if (controller.attackObject.gameObject.activeSelf)
+            return true;
         return false;
     }
 }

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7874536021775757955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7874536021775757954}
+  - component: {fileID: 7874536021775757980}
+  - component: {fileID: 7874536021775757981}
+  - component: {fileID: 7874536021775757983}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7874536021775757954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874536021775757955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7874536021775757980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874536021775757955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5d10bb88d14d643babe4ba6fbf6b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthSize: 20
+  lengthSize: 30
+  cubePre: {fileID: 1129242302503901318, guid: 4b35928acb5e14d449e433566f204997, type: 3}
+  platformPre: {fileID: 6260863132287664557, guid: 744246c492fe5a6428dcf253b5439352, type: 3}
+  castlePre: {fileID: 2626527313932248635, guid: 09e8f3cc04200de4080196b6b3139794, type: 3}
+  housePre: {fileID: 323551759697545011, guid: 4d6a1b07908acc74e917346c5811eaa9, type: 3}
+  obstaclePre: {fileID: 4929912383520338331, guid: 04b4c9a4a2f78b64b80d761423c06ae2, type: 3}
+  platformNum: 3
+  platformSizeMin: 1
+  platformSizeMax: 5
+  platformHeightMin: 2
+  platformHeightMax: 10
+  houseNum: 6
+  obstacleNumMin: 5
+  obstacleNumMax: 10
+--- !u!114 &7874536021775757981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874536021775757955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13632ec61d0d8b4ea05842b8fe81da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7874536021775757983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874536021775757955}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e37c300b84dc44283bc708fa71ff6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_test: {fileID: 0}
+  m_EnemyPrefabs:
+  - m_LegionPosition: {fileID: 0}
+    LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
+  m_PlayerPrefabs: []
+  m_housePoint:
+  - {fileID: 0}

@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Legion
 {
-    public int m_LegionNumber;
+    public Transform m_LegionPosition;
     public GameObject LegionPrefeb;
 }

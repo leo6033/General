@@ -12,9 +12,17 @@ public class BattleAction : Action
 
     private void Battle(StateController controller)
     {
-        controller.navMeshAgent.isStopped = true;
-        if (controller.CheckifCountDownElapsed(controller.stats.attackRate))
+        // 判断是否在攻击范围之内，如果不在则追击，当进入攻击范围开始攻击
+        if(controller.stats.attackRange < Vector3.Distance(controller.transform.position, controller.attackObject.transform.position) && controller.attackObject.tag != "House" && controller.attackObject.tag != "Castle")
         {
+            controller.navMeshAgent.isStopped = false;
+            //controller.navMeshAgent.velocity = Vector3.zero;
+            controller.navMeshAgent.SetDestination(controller.attackObject.transform.position);
+        }
+        else if (controller.CheckifCountDownElapsed(controller.stats.attackRate))
+        {
+            controller.navMeshAgent.isStopped = true;
+            controller.navMeshAgent.velocity = Vector3.zero;
             controller.attack.AttackEnemy(controller.attackObject, controller.stats.attackRate);
         }
     }
