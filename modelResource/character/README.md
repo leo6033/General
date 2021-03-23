@@ -1,8 +1,6 @@
 # 动画分帧
 
-***颜色导出有问题，先不管回头我在unity里统一调整，预期色调：
-
-![image-20210323001016526](C:\Users\autm09\AppData\Roaming\Typora\typora-user-images\image-20210323001016526.png)
+***剩下两个兵种周五六再搞（（（毕设导师疯狂push进度
 
 ### 苍龙古林：
 
