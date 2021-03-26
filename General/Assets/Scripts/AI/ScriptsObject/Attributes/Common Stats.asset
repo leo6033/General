@@ -10,8 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f71c4ed59af3dda4fa8dbcaa378a7219, type: 3}
-  m_Name: New Stats
+  m_Name: Common Stats
   m_EditorClassIdentifier: 
   attackRange: 1
-  attackRate: 1
+  attackRate: 2
   visionRange: 2
+  physicalAttack: 50
+  magicAttack: 0
+  physicalDefense: 20
+  magicDefense: 5
+  moveSpeed: 1
+  HP: 100
+  critRate: 10
+  critHarm: 1.5
+  dodgeRate: 10
+  acceleration: 0.33

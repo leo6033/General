@@ -27,5 +27,9 @@ public class Stats : ScriptableObject
     public float critRate;
     [Header("暴伤")]
     public float critHarm;
+    [Header("闪避")]
+    public float dodgeRate;
+    [Header("加速度")]
+    public float acceleration;
 }
 

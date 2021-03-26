@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float m_StartingHealth = 100;
-
+    private float m_StartingHealth;
+    private StateController m_StateController;
+    private Animator m_Animator;
     private bool m_Dead;
     private float m_CurrentHealth;
     private LegionUtil[] m_LegionUtils;
@@ -31,7 +32,12 @@ public class Health : MonoBehaviour
 
     public void OnEnable()
     {
-        m_CurrentHealth = m_StartingHealth;
+        m_Animator = GetComponent<Animator>();
+        m_StateController = GetComponent<StateController>();
+        if (m_StateController != null)
+            m_CurrentHealth = m_StateController.stats.HP;
+        else
+            m_CurrentHealth = 100.0f;
         m_Dead = false;
     }
 
@@ -40,6 +46,11 @@ public class Health : MonoBehaviour
     {
         m_Dead = true;
         StopAllCoroutines();
-        gameObject.SetActive(false);
+        if(m_StateController != null)
+            m_StateController.enabled = false;
+        if(m_Animator != null)
+            m_Animator.SetBool("dead", true);
+        gameObject.layer = 1;
+        //gameObject.SetActive(false);
     }
 }
