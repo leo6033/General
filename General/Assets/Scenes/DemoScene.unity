@@ -281,7 +281,7 @@ MonoBehaviour:
   - m_LegionPosition: {fileID: 1517760468}
     LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
   - m_LegionPosition: {fileID: 1590963016}
-    LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
+    LegionPrefeb: {fileID: 7465501500320789957, guid: 9dd358a244b48774ea76b1c27a33bd1f, type: 3}
   m_PlayerPrefabs:
   - m_LegionPosition: {fileID: 57801723}
     LegionPrefeb: {fileID: 3542742060235425185, guid: f36c7a86c094cac41abc39770864fb83, type: 3}
