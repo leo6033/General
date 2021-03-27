@@ -14,8 +14,9 @@ public class WalkAction : Action
     {
         controller.navMeshAgent.SetDestination(controller.targetHouse.transform.position + controller.RelativePosition);
         controller.navMeshAgent.isStopped = false;
+        controller.animator.SetInteger("walk", 1);
 
-        if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || !controller.targetHouse.activeSelf)
+        if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || controller.targetHouse.GetComponent<Health>().Dead())
         {
             controller.houseList.Remove(controller.targetHouse);
             //Debug.Log(controller.pointList.Count);

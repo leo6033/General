@@ -17,11 +17,13 @@ public class MoveAction : Action
         //Debug.Log(controller.gameObject.name + " Walk" + controller.targetPoint.position + controller.RelativePosition);
         controller.navMeshAgent.SetDestination(controller.targetPoint.position + controller.RelativePosition);
         controller.navMeshAgent.isStopped = false;
+        controller.animator.SetInteger("walk", 1);
 
         if (controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending)
         {
             // 到目标点后，改变状态为 standby
             controller.navMeshAgent.isStopped = true;
+            controller.animator.SetInteger("walk", 0);
             controller.TransitionToState(standby);
         }
     }

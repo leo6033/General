@@ -11,8 +11,9 @@ public class Health : MonoBehaviour
     private float m_CurrentHealth;
     private LegionUtil[] m_LegionUtils;
 
-    public void TakeDamage(float amount)
+    public IEnumerator TakeDamage(float amount, float animationTime)
     {
+        yield return new WaitForSeconds(animationTime);
         //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
         if(m_CurrentHealth <= 0 && !m_Dead)
@@ -50,7 +51,17 @@ public class Health : MonoBehaviour
             m_StateController.enabled = false;
         if(m_Animator != null)
             m_Animator.SetBool("dead", true);
-        gameObject.layer = 1;
-        //gameObject.SetActive(false);
+        gameObject.GetComponent<Collider>().enabled = false;
+        Invoke("delete", 2.0f);
+    }
+
+    public bool Dead()
+    {
+        return m_Dead;
+    }
+
+    private void delete()
+    {
+        gameObject.SetActive(false);
     }
 }

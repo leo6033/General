@@ -12,6 +12,6 @@ public class StandbyAction : Action
 
     private void Standby(StateController controller)
     {
-
+        controller.animator.SetInteger("walk", 0);
     }
 }

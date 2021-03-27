@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71c4ed59af3dda4fa8dbcaa378a7219, type: 3}
+  m_Name: shield Stats
+  m_EditorClassIdentifier: 
+  attackRange: 1
+  attackRate: 1
+  visionRange: 2
+  physicalAttack: 50
+  magicAttack: 0
+  physicalDefense: 30
+  magicDefense: 5
+  moveSpeed: 0.5
+  HP: 200
+  critRate: 5
+  critHarm: 1.5
+  dodgeRate: 5
+  acceleration: 0.2

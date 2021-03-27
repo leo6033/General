@@ -15,18 +15,47 @@ public class Attack : MonoBehaviour
         if(Time.time > nextAttackTime)
         {
             //skinnedMeshRenderer.material.color = Color.red;
+            Animator animator = GetComponent<Animator>();
             Debug.Log(collider.name);
 
             // TODO: 伤害判定等
             Health targetHealth = collider.GetComponent<Health>();
+            
             if (targetHealth.isActiveAndEnabled)
             {
-                targetHealth.TakeDamage(30);
+                animator.SetTrigger("battle");
+                AnimationClip animationClip = animator.runtimeAnimatorController.animationClips[0];
+                Debug.Log(animationClip.length);
+                StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animationClip.length));
+                
                 nextAttackTime = Time.time + attackRate;
             }
             //Debug.Log(collider.name);
             //StartCoroutine(ColorReset(attackRate));
         }
+    }
+
+    private float CalculateDamage(Collider collider)
+    {
+        Stats myStats = GetComponent<StateController>().stats;
+        if (collider.tag == "House" || collider.tag == "Castle")
+            return myStats.physicalAttack + myStats.magicAttack;
+        Stats enemyStats = collider.GetComponent<StateController>().stats;
+
+        float physical = myStats.physicalAttack - enemyStats.physicalDefense;
+        physical = physical > 0 ? physical : 0;
+        float magic = myStats.magicAttack - enemyStats.magicDefense;
+        magic = magic > 0 ? magic : 0;
+        float harm = physical + magic;
+
+        int X = Random.Range(0, 100);
+
+        if (X <= enemyStats.dodgeRate)
+            return 0;
+        else if (X <= myStats.critRate + enemyStats.dodgeRate)
+            return harm * myStats.critHarm;
+
+        return harm;
     }
 
     IEnumerator ColorReset(float attackRate)

@@ -18,6 +18,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
     [HideInInspector] public Vector3 RelativePosition;
+    [HideInInspector] public Animator animator;
 
     private bool aiActive = true;
 
@@ -25,6 +26,7 @@ public class StateController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
+        animator = GetComponent<Animator>();
     }
 
     public void SetupAI(bool aiActivationFromManager, List<GameObject> HouseFromManager)
@@ -57,6 +59,7 @@ public class StateController : MonoBehaviour
     {
         if(nextState != remainState)
         {
+            animator.SetInteger("walk", 1);
             currentState = nextState;
             OnExitState();
         }

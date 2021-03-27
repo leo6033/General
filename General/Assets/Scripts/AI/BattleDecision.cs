@@ -13,8 +13,9 @@ public class BattleDecision : Decision
 
     private bool Battle(StateController controller)
     {
-        if (controller.attackObject.gameObject.activeSelf)
+        if (!controller.attackObject.GetComponent<Health>().Dead())
             return true;
+        controller.animator.SetInteger("walk", 2);
         return false;
     }
 }
