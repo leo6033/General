@@ -24,11 +24,12 @@ public class Attack : MonoBehaviour
             if (targetHealth.isActiveAndEnabled)
             {
                 animator.SetTrigger("battle");
-                AnimationClip animationClip = animator.runtimeAnimatorController.animationClips[0];
-                Debug.Log(animationClip.length);
-                StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animationClip.length));
-                
-                nextAttackTime = Time.time + attackRate;
+                AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+                if (animatorStateInfo.IsName("battle"))
+                {
+                    StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length));
+                    nextAttackTime = Time.time + attackRate;
+                }
             }
             //Debug.Log(collider.name);
             //StartCoroutine(ColorReset(attackRate));

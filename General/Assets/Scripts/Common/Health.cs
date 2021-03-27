@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 
     public IEnumerator TakeDamage(float amount, float animationTime)
     {
-        yield return new WaitForSeconds(animationTime);
+        yield return new WaitForSeconds(animationTime + 0.02f);
         //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
         if(m_CurrentHealth <= 0 && !m_Dead)
