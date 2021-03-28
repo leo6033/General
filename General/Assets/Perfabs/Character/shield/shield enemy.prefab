@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7815663912057963270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: forearm.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6537585802728855566}
   - component: {fileID: 7002863726313120040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8631067461051973058}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spine.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2184269368238675209}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: forearm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5318737000602954002}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3057707473570655467}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: metarig.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,9 +268,9 @@ GameObject:
   - component: {fileID: 8360439299411622540}
   - component: {fileID: 3975868020960027872}
   - component: {fileID: 1266945756934272442}
-  m_Layer: 0
-  m_Name: shield
-  m_TagString: Untagged
+  m_Layer: 9
+  m_Name: shield enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -419,7 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214064942080251046}
   - component: {fileID: 3604003311811218501}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WEAPON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1551101350792931742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spine.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7493428353598350734}
   - component: {fileID: 1640990099732703596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3129506179342588194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upper_arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8448108302753373075}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upper_arm.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7674701411335455401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: upper_arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

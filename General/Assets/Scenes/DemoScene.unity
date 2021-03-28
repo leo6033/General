@@ -286,7 +286,7 @@ MonoBehaviour:
   - m_LegionPosition: {fileID: 57801723}
     LegionPrefeb: {fileID: 3542742060235425185, guid: f36c7a86c094cac41abc39770864fb83, type: 3}
   - m_LegionPosition: {fileID: 1999739927}
-    LegionPrefeb: {fileID: 3542742060235425185, guid: f36c7a86c094cac41abc39770864fb83, type: 3}
+    LegionPrefeb: {fileID: 8270720809801194506, guid: 673ff68a08380c841b658a7c2ba37aa4, type: 3}
   m_MessageText: {fileID: 2036933795}
 --- !u!114 &720586195
 MonoBehaviour:
