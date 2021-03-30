@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     private List<StateController> enemines;
     private List<StateController> players;
     private WaitForSeconds m_EndWait;
-    //private bool isWin = false;
+
+    private int EnemyCreateCount = 0;
+    private bool EnemyCreateFinish = false;
 
     private void Start()
     {
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
             if (enemines[i].gameObject.activeSelf)
                 return false;
         }
-        return true;
+        return EnemyCreateFinish;
     }
 
     private bool CheckLose()
@@ -100,11 +102,20 @@ public class GameManager : MonoBehaviour
         enemines = new List<StateController>();
         for (int i = 0; i < m_EnemyPrefabs.Length; i++)
         {
-            GameObject legion = Instantiate(m_EnemyPrefabs[i].LegionPrefeb, m_EnemyPrefabs[i].m_LegionPosition.position, m_EnemyPrefabs[i].m_LegionPosition.rotation) as GameObject;
-            EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
-            enemyManager.m_Instance = legion;
-            enemyManager.Setup(houseTransform, ref enemines);
+            StartCoroutine(CreateEnemy(m_EnemyPrefabs[i], houseTransform));
         }
+    }
+
+    IEnumerator CreateEnemy(Legion m_EnemyPrefab, List<GameObject> houseTransform)
+    {
+        yield return new WaitForSeconds(m_EnemyPrefab.Time);
+        GameObject legion = Instantiate(m_EnemyPrefab.LegionPrefeb, m_EnemyPrefab.m_LegionPosition.position, m_EnemyPrefab.m_LegionPosition.rotation) as GameObject;
+        EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
+        enemyManager.m_Instance = legion;
+        enemyManager.Setup(houseTransform, ref enemines);
+        EnemyCreateCount++;
+        if (EnemyCreateCount == m_EnemyPrefabs.Length)
+            EnemyCreateFinish = true;
     }
 
     private void CreatePlayer()
