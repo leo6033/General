@@ -16,7 +16,7 @@ public class Attack : MonoBehaviour
         {
             //skinnedMeshRenderer.material.color = Color.red;
             Animator animator = GetComponent<Animator>();
-            Debug.Log(collider.name);
+            //Debug.Log(collider.name);
 
             // TODO: 伤害判定等
             Health targetHealth = collider.GetComponent<Health>();

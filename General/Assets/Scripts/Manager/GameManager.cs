@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public Legion[] m_PlayerPrefabs;
     public Text m_MessageText;
 
+    public GameObject EnemyLegionPrefab;
+    public GameObject PlayerLegionPrefab;
+
     private MapCreater mapCreater;
     private List<StateController> enemines;
     private List<StateController> players;
@@ -109,8 +112,9 @@ public class GameManager : MonoBehaviour
     IEnumerator CreateEnemy(Legion m_EnemyPrefab, List<GameObject> houseTransform)
     {
         yield return new WaitForSeconds(m_EnemyPrefab.Time);
-        GameObject legion = Instantiate(m_EnemyPrefab.LegionPrefeb, m_EnemyPrefab.m_LegionPosition.position, m_EnemyPrefab.m_LegionPosition.rotation) as GameObject;
+        GameObject legion = Instantiate(EnemyLegionPrefab, m_EnemyPrefab.m_LegionPosition.position, m_EnemyPrefab.m_LegionPosition.rotation) as GameObject;
         EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
+        enemyManager.Init(m_EnemyPrefab.Number, m_EnemyPrefab.LegionPrefeb);
         enemyManager.m_Instance = legion;
         enemyManager.Setup(houseTransform, ref enemines);
         EnemyCreateCount++;
@@ -123,8 +127,9 @@ public class GameManager : MonoBehaviour
         players = new List<StateController>();
         for(int i = 0; i < m_PlayerPrefabs.Length; i++)
         {
-            GameObject legion = Instantiate(m_PlayerPrefabs[i].LegionPrefeb, m_PlayerPrefabs[i].m_LegionPosition.position, m_PlayerPrefabs[i].m_LegionPosition.rotation) as GameObject;
+            GameObject legion = Instantiate(PlayerLegionPrefab, m_PlayerPrefabs[i].m_LegionPosition.position, m_PlayerPrefabs[i].m_LegionPosition.rotation) as GameObject;
             PlayerManager playerManager = legion.GetComponent<PlayerManager>();
+            playerManager.Init(m_PlayerPrefabs[i].Number, m_PlayerPrefabs[i].LegionPrefeb);
             playerManager.m_Instance = legion;
             playerManager.Setup(ref players);
         }

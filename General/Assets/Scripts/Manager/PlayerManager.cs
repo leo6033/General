@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public List<Transform> transforms;
     [HideInInspector] public GameObject m_Instance;
     private LegionUtil[] legionUtils;
+
+    public void Init(float Number, GameObject LegionPrefeb)
+    {
+        for (int i = 0; i < Number; i++)
+        {
+            Instantiate(LegionPrefeb, transforms[i].position, transforms[i].rotation, transform);
+        }
+    }
 
     public void Setup(ref List<StateController> stateControllers)
     {

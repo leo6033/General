@@ -277,22 +277,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyPrefabs:
   - m_LegionPosition: {fileID: 2089147326}
-    LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
+    LegionPrefeb: {fileID: 1535693509956901409, guid: e8e2bbaf28cdb7e4ab3e2f5ecd771236, type: 3}
+    Number: 2
     Time: 1
   - m_LegionPosition: {fileID: 1517760468}
-    LegionPrefeb: {fileID: 6005829130102052552, guid: f067f6fa42abede40a2063eeefe108be, type: 3}
+    LegionPrefeb: {fileID: 1535693509956901409, guid: e8e2bbaf28cdb7e4ab3e2f5ecd771236, type: 3}
+    Number: 2
     Time: 5
   - m_LegionPosition: {fileID: 1590963016}
-    LegionPrefeb: {fileID: 7465501500320789957, guid: 9dd358a244b48774ea76b1c27a33bd1f, type: 3}
+    LegionPrefeb: {fileID: 4635434032178536978, guid: 0759df1f888fc4442add002a6c4720ba, type: 3}
+    Number: 2
     Time: 10
   m_PlayerPrefabs:
   - m_LegionPosition: {fileID: 57801723}
-    LegionPrefeb: {fileID: 3542742060235425185, guid: f36c7a86c094cac41abc39770864fb83, type: 3}
+    LegionPrefeb: {fileID: 2677539188020488831, guid: a2452d7c8262f8747b8c39438e4f1c3e, type: 3}
+    Number: 2
     Time: 0
   - m_LegionPosition: {fileID: 1999739927}
-    LegionPrefeb: {fileID: 8270720809801194506, guid: 673ff68a08380c841b658a7c2ba37aa4, type: 3}
+    LegionPrefeb: {fileID: 846815269490056009, guid: 1b94a5d5c2026a44c8a636c1cf3d0008, type: 3}
+    Number: 2
     Time: 0
   m_MessageText: {fileID: 2036933795}
+  EnemyLegionPrefab: {fileID: 8084380400520461149, guid: 2783c94312967914f9989f46ab4b7708, type: 3}
+  PlayerLegionPrefab: {fileID: 786513124625265864, guid: 75f365a764b33d44ca13b832e2fb025c, type: 3}
 --- !u!114 &720586195
 MonoBehaviour:
   m_ObjectHideFlags: 0
