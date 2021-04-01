@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
         bool flag = true;
         for (int i = 0; i < mapCreater.houses.Count; i++)
         {
-            if (mapCreater.houses[i].tag == "Castle" && !mapCreater.houses[i].activeSelf)
+            if (mapCreater.houses[i].tag == "Castle" && mapCreater.houses[i].GetComponent<Health>().Dead())
                 return true;
-            else if (mapCreater.houses[i].gameObject.activeSelf)
+            else if (!mapCreater.houses[i].GetComponent<Health>().Dead())
                 flag = false;
         }
         if (flag)
