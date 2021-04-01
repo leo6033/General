@@ -41,6 +41,10 @@ public class MapCreater : MonoBehaviour
     public Transform castlePos;
     public List<Transform> housePoss;
 
+    [Header("城堡和房子血量")]
+    public float casHp = 100;
+    public float houHp = 100;
+
     [HideInInspector] public List<GameObject> houses;
 
 
@@ -245,6 +249,7 @@ public class MapCreater : MonoBehaviour
         pos.y = y;
         
         castle = GameObject.Instantiate(castlePre, pos, castlePre.transform.rotation);
+        castle.GetComponent<Health>().Init(casHp);
         houses.Add(castle);
     }
 
@@ -288,6 +293,7 @@ public class MapCreater : MonoBehaviour
             pos.y = y;
 
             GameObject house = GameObject.Instantiate(housePre, pos, housePre.transform.rotation);
+            house.GetComponent<Health>().Init(houHp);
             houses.Add(house);
             m_CubeScript.isShowGrid = false;
         }
