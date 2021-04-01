@@ -36,6 +36,8 @@ public class StateController : MonoBehaviour
         aiActive = aiActivationFromManager;
         navMeshAgent.enabled = aiActive;
 
+        GetComponent<Health>().Init(stats.HP);
+
         //Debug.Log(gameObject.name + transform.parent.transform.position + GetComponent<Transform>().position);
 
         RelativePosition = transform.parent.transform.position - GetComponent<Transform>().position;

@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     private StateController m_StateController;
     private Animator m_Animator;
     private bool m_Dead;
-    private float m_CurrentHealth;
+    private float m_CurrentHealth = 100.0f;
     private LegionUtil[] m_LegionUtils;
 
     public IEnumerator TakeDamage(float amount, float animationTime)
@@ -35,10 +35,10 @@ public class Health : MonoBehaviour
     {
         m_Animator = GetComponent<Animator>();
         m_StateController = GetComponent<StateController>();
-        if (m_StateController != null)
-            m_CurrentHealth = m_StateController.stats.HP;
-        else
-            m_CurrentHealth = 100.0f;
+        //if (m_StateController != null)
+        //    m_CurrentHealth = m_StateController.stats.HP;
+        //else
+        //    m_CurrentHealth = 100.0f;
         m_Dead = false;
     }
 
@@ -63,5 +63,10 @@ public class Health : MonoBehaviour
     private void delete()
     {
         gameObject.SetActive(false);
+    }
+
+    public void Init(float HP)
+    {
+        m_CurrentHealth = HP;
     }
 }
