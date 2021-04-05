@@ -281,7 +281,7 @@ MonoBehaviour:
     Number: 2
     Time: 1
   - m_LegionPosition: {fileID: 1517760468}
-    LegionPrefeb: {fileID: 1535693509956901409, guid: e8e2bbaf28cdb7e4ab3e2f5ecd771236, type: 3}
+    LegionPrefeb: {fileID: 5542726576003084967, guid: 265d6e102b0b60047b1bb3f80589be2e, type: 3}
     Number: 2
     Time: 5
   - m_LegionPosition: {fileID: 1590963016}
@@ -348,6 +348,8 @@ MonoBehaviour:
   - {fileID: 583059769}
   - {fileID: 349926471}
   - {fileID: 1947326653}
+  casHp: 100
+  houHp: 100
   houses: []
 --- !u!4 &720586197
 Transform:
