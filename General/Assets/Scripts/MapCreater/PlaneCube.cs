@@ -12,7 +12,7 @@ public class PlaneCube : MonoBehaviour
     private bool isGrid = false;
     private void Awake()
     {
-        height = transform.position.y + transform.localScale.y * 0.5f;
+        height = transform.position.y + transform.localScale.y / 25 * 0.5f;
     }
 
     public void showGrid()
