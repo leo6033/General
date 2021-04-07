@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
             stateControllers.Add(stateController);
         }
         EnsignFollow ensignFollow =  Instantiate(ensign, stateControllers[0].transform.position + ensign.transform.position, ensign.transform.rotation).GetComponent<EnsignFollow>();
-        ensignFollow.Legion = this;
+        ensignFollow.playerLegion = this;
     }
 
     public StateController getFllowingStateController()

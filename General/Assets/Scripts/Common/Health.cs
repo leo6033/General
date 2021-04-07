@@ -79,7 +79,7 @@ public class Health : MonoBehaviour
         {
             playerManager.count -= 1;
         }
-        //else if (enemyManager != null)
-        //    enemyManager.count -= 1;
+        else if (enemyManager != null)
+            enemyManager.count -= 1;
     }
 }
