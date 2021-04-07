@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
                 {
                     PlaneCubeManager.showGrid();
                     m_Selected = true;
+                    Time.timeScale = 0.1f;
                     //go.GetComponent<PlayerManager>().setColor(Color.white);
                 }
             }
@@ -57,6 +58,7 @@ public class Movement : MonoBehaviour
                     m_Selected = false;
                     PlaneCubeManager.cancleGrid();
                     go = null;
+                    Time.timeScale = 1f;
                 }    
             }
         }
