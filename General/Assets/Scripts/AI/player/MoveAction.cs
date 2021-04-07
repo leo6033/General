@@ -15,7 +15,7 @@ public class MoveAction : Action
     private void Move(StateController controller)
     {
         //Debug.Log(controller.gameObject.name + " Walk" + controller.targetPoint.position + controller.RelativePosition);
-        controller.navMeshAgent.SetDestination(controller.targetPoint.position + controller.RelativePosition);
+        controller.navMeshAgent.SetDestination(controller.targetPoint + controller.RelativePosition);
         controller.navMeshAgent.isStopped = false;
         controller.animator.SetInteger("walk", 1);
 

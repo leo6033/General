@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
                 {
                     PlaneCubeManager.showGrid();
                     m_Selected = true;
-                    go.GetComponent<PlayerManager>().setColor(Color.white);
+                    //go.GetComponent<PlayerManager>().setColor(Color.white);
                 }
             }
         }
@@ -44,14 +44,16 @@ public class Movement : MonoBehaviour
                 Transform m_TargetPoint = hit.transform;
                 if (m_TargetPoint != null && m_TargetPoint.tag == "PlaneCube")
                 {
-                    Debug.Log(m_TargetPoint.position);
+                    Vector3 position = m_TargetPoint.position;
+                    position.y +=  hit.collider.gameObject.GetComponent<PlaneCube>().height / 2;
+                    Debug.Log(position);
                     StateController[] objs = go.GetComponentsInChildren<StateController>();
                     foreach (StateController stateController in objs)
                     {
-                        stateController.targetPoint = m_TargetPoint;
+                        stateController.targetPoint = position;
                         stateController.currentState = m_WalkState;
                     }
-                    go.GetComponent<PlayerManager>().setColor(Color.black);
+                    //go.GetComponent<PlayerManager>().setColor(Color.black);
                     m_Selected = false;
                     PlaneCubeManager.cancleGrid();
                     go = null;

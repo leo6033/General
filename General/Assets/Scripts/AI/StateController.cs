@@ -14,7 +14,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public List<GameObject> houseList;
     [HideInInspector] public GameObject targetHouse;
-    [HideInInspector] public Transform targetPoint;
+    [HideInInspector] public Vector3 targetPoint;
     [HideInInspector] public int nextPoint;
     [HideInInspector] public Collider attackObject;
     [HideInInspector] public Vector3 RelativePosition;
