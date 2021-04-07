@@ -66,13 +66,13 @@ public class MapCreater : MonoBehaviour
         m_PlaneCubeManager = GetComponent<PlaneCubeManager>();
         
         createPlane();
-        createCastle();
+        //createCastle();
         createPlatform();
         createHouse(); 
         createObstacle();
 
         plane.AddComponent<NavMeshSurface>();
-        plane.GetComponent<NavMeshSurface>().collectObjects = CollectObjects.Children;
+        plane.GetComponent<NavMeshSurface>().collectObjects = CollectObjects.All;
         plane.GetComponent<NavMeshSurface>().BuildNavMesh();
 
     }
@@ -203,24 +203,24 @@ public class MapCreater : MonoBehaviour
         secPlat.position = new Vector3(secPlat.position.x, z, secPlat.position.z);
         m_CubeScript.height = secPlat.localScale.z / 50 + z;
 
-        //添加OffMeshLink
-        Vector3 startPos = secPlat.position;
-        float hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 0.05f);
-        startPos.y = hei;
-        GameObject startPoint = new GameObject();
-        startPoint.name = "startPoint";
-        startPoint.transform.position = startPos;
-        Vector3 endPos = oriPlat.position;
-        hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 1f);
-        endPos.y = hei;
-        GameObject endPoint = new GameObject();
-        endPoint.name = "EndPoint";
-        endPoint.transform.position = endPos;
-        oriPlat.gameObject.AddComponent<OffMeshLink>();
-        OffMeshLink oml = oriPlat.GetComponent<OffMeshLink>();
-        oml.startTransform = startPoint.transform;
-        oml.endTransform = endPoint.transform;
-        oml.area = 2;//walkable = 0;not walkable = 1; jump = 2
+        ////添加OffMeshLink
+        //Vector3 startPos = secPlat.position;
+        //float hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 0.05f);
+        //startPos.y = hei;
+        //GameObject startPoint = new GameObject();
+        //startPoint.name = "startPoint";
+        //startPoint.transform.position = startPos;
+        //Vector3 endPos = oriPlat.position;
+        //hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 1f);
+        //endPos.y = hei;
+        //GameObject endPoint = new GameObject();
+        //endPoint.name = "EndPoint";
+        //endPoint.transform.position = endPos;
+        //oriPlat.gameObject.AddComponent<OffMeshLink>();
+        //OffMeshLink oml = oriPlat.GetComponent<OffMeshLink>();
+        //oml.startTransform = startPoint.transform;
+        //oml.endTransform = endPoint.transform;
+        //oml.area = 2;//walkable = 0;not walkable = 1; jump = 2
 
         //生成下一梯度
         secPlats.Clear();
@@ -243,7 +243,7 @@ public class MapCreater : MonoBehaviour
         m_CubeScript = m_PlaneCubeManager.getCube(pos.x, pos.z).GetComponent<PlaneCube>();
         m_CubeScript.isShowGrid = false;
         //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量
-        float y = 0.5f;
+        float y = m_CubeScript.height;
         pos.y = y;
         
         castle = GameObject.Instantiate(castlePre, pos, castlePre.transform.rotation);
@@ -274,7 +274,7 @@ public class MapCreater : MonoBehaviour
             }
             m_CubeScript.isShowGrid = false;
             //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量(自身高度的一半)
-            float y = 0.65f;
+            float y = 0.15f+m_CubeScript.height;
             pos.y = y;
             GameObject.Instantiate(obstaclePre, pos, obstaclePre.transform.rotation);
         }
@@ -287,7 +287,7 @@ public class MapCreater : MonoBehaviour
             Vector3 pos = housePoss[i].position;
             m_CubeScript = m_PlaneCubeManager.getCube(pos.x, pos.z).GetComponent<PlaneCube>();
             //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量
-            float y = 0.85f;
+            float y = 0.35f+m_CubeScript.height;
             pos.y = y;
 
             GameObject house = GameObject.Instantiate(housePre, pos, housePre.transform.rotation);

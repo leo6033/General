@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.25
     agentHeight: 1
     agentSlope: 45
     agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    minRegionArea: 2
+    minRegionArea: 0
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.083333336
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -330,16 +330,15 @@ MonoBehaviour:
   lengthSize: 15
   cubeSize: 2
   cubePre: {fileID: 4261119679151948119, guid: 4ae32f39065fad24ea5450b2ca346663, type: 3}
-  platformPre: {fileID: 983935581101655538, guid: 5e536bd2fe79e8046a7210e03572ff6f, type: 3}
   castlePre: {fileID: 1908601930077936133, guid: 738d98d65d1e2c74daa74981454646ab, type: 3}
   housePre: {fileID: 2257877680944024627, guid: 0f1e7858c3dc2ba4f8f3562ba75cc434, type: 3}
   obstaclePre: {fileID: 6424423906646166552, guid: a6f20440e1ddd7241848f2778175fe98, type: 3}
   ladderPre: {fileID: 7626123930440405267, guid: b268fa1b5e7ae0f4aab5fa3425a930fa, type: 3}
-  platformNum: 3
-  platformSizeMin: 2
+  platformNum: 1
+  platformSizeMin: 5
   platformSizeMax: 5
-  platformHeightMin: 2
-  platformHeightMax: 5
+  platformHeightMin: 8
+  platformHeightMax: 8
   obstacleNumMin: 3
   obstacleNumMax: 5
   castlePos: {fileID: 279709674}
@@ -8544,7 +8543,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!65 &3791414592544208357
