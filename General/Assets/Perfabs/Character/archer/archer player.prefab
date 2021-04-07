@@ -473,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 2145467453814391674}
+  ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
 --- !u!114 &7780541125238915189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +494,7 @@ MonoBehaviour:
   stateTimeElapsed: 0
   houseList: []
   targetHouse: {fileID: 0}
-  targetPoint: {fileID: 0}
+  targetPoint: {x: 0, y: 0, z: 0}
   nextPoint: 0
   attackObject: {fileID: 0}
   RelativePosition: {x: 0, y: 0, z: 0}

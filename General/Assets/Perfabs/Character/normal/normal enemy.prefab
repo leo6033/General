@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 7029912554649812665}
   - component: {fileID: 8495757194102768461}
   m_Layer: 9
-  m_Name: normal
+  m_Name: normal enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 156464790769045931}
+  ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
 --- !u!114 &8495757194102768461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,10 +308,11 @@ MonoBehaviour:
   stateTimeElapsed: 0
   houseList: []
   targetHouse: {fileID: 0}
-  targetPoint: {fileID: 0}
+  targetPoint: {x: 0, y: 0, z: 0}
   nextPoint: 0
   attackObject: {fileID: 0}
   RelativePosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
 --- !u!1 &1655794534407395844
 GameObject:
   m_ObjectHideFlags: 0

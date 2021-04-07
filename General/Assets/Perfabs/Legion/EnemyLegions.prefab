@@ -332,4 +332,5 @@ MonoBehaviour:
   - {fileID: 4762512028581464113}
   - {fileID: 7478075327147128807}
   - {fileID: 2716027900651999659}
+  ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
   m_Instance: {fileID: 0}

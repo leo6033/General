@@ -3,7 +3,9 @@ guid: 2358bd27d9268b947ac4c68547338de6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - skinnedMeshRenderer: {instanceID: 0}
+  - ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

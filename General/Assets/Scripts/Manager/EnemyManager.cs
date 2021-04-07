@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public List<Transform> transforms;
+    public GameObject ensign;
     [HideInInspector] public GameObject m_Instance;
 
     public void Init(float Number, GameObject LegionPrefeb)

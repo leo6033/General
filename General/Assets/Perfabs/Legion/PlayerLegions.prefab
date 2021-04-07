@@ -92,6 +92,7 @@ MonoBehaviour:
   - {fileID: 5992389739975806508}
   - {fileID: 6673591377140824878}
   - {fileID: 6488986174796143919}
+  ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
   m_Instance: {fileID: 0}
 --- !u!1 &802089427390568612
 GameObject:

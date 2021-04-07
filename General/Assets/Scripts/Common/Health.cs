@@ -52,6 +52,7 @@ public class Health : MonoBehaviour
         if(m_Animator != null)
             m_Animator.SetBool("dead", true);
         gameObject.GetComponent<Collider>().enabled = false;
+        decreaseCount();
         Invoke("delete", 2.0f);
     }
 
@@ -68,5 +69,17 @@ public class Health : MonoBehaviour
     public void Init(float HP)
     {
         m_CurrentHealth = HP;
+    }
+
+    private void decreaseCount()
+    {
+        PlayerManager playerManager = GetComponentInParent<PlayerManager>();
+        EnemyManager enemyManager = GetComponentInParent<EnemyManager>();
+        if (playerManager != null)
+        {
+            playerManager.count -= 1;
+        }
+        //else if (enemyManager != null)
+        //    enemyManager.count -= 1;
     }
 }
