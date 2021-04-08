@@ -9,6 +9,9 @@ public class PlaneCube : MonoBehaviour
     public Material planeCube;
     public Material planeCubeGrid;
 
+    [HideInInspector]
+    public PlayerManager playerManager;
+
     private bool isGrid = false;
     private void Awake()
     {
