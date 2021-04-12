@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy Battle
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 32429ebc16f52a54e8eb135100637725, type: 2}
+  - {fileID: 11400000, guid: e881507bc1d839b4595661c05a76468d, type: 2}
   transitions:
-  - decision: {fileID: 11400000, guid: a801882edc6e1094d88dea63ec0e61ef, type: 2}
+  - decision: {fileID: 11400000, guid: c12a93e57eb161845b919095df4340b7, type: 2}
     trueState: {fileID: 11400000, guid: c7a9f04e27e89f44f9873932c3c9ad0c, type: 2}
     falseState: {fileID: 11400000, guid: 70eb1eddb8ba5ab4ebb06f44f16a9890, type: 2}

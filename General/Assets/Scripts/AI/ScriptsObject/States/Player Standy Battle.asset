@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player Standy Battle
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 32429ebc16f52a54e8eb135100637725, type: 2}
+  - {fileID: 11400000, guid: 91cae22b91aae184e843d23d9f17de4a, type: 2}
   transitions:
-  - decision: {fileID: 11400000, guid: a801882edc6e1094d88dea63ec0e61ef, type: 2}
+  - decision: {fileID: 11400000, guid: b0627d764da05c84fbf23e1727f0465c, type: 2}
     trueState: {fileID: 11400000, guid: c7a9f04e27e89f44f9873932c3c9ad0c, type: 2}
     falseState: {fileID: 11400000, guid: d37eba9abbe30774d9e5e29ef6c5a1ae, type: 2}
