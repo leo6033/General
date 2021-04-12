@@ -53,6 +53,7 @@ public class Movement : MonoBehaviour
                     {
                         stateController.targetPoint = position;
                         stateController.currentState = m_WalkState;
+                        Debug.Log(transform.gameObject.name + " start" + m_WalkState);
                     }
                     //go.GetComponent<PlayerManager>().setColor(Color.black);
                     m_Selected = false;

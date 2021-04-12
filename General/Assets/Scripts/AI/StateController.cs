@@ -8,6 +8,7 @@ public class StateController : MonoBehaviour
     public State currentState;
     public State remainState;
     public Stats stats;
+    public bool m_IsRemote;
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [HideInInspector] public Attack attack;
@@ -39,7 +40,7 @@ public class StateController : MonoBehaviour
         GetComponent<Health>().Init(stats.HP);
 
         //Debug.Log(gameObject.name + transform.parent.transform.position + GetComponent<Transform>().position);
-
+        targetPoint = transform.position;
         RelativePosition = transform.parent.transform.position - GetComponent<Transform>().position;
 
         float distance = Mathf.Infinity;
@@ -61,7 +62,8 @@ public class StateController : MonoBehaviour
     {
         if(nextState != remainState)
         {
-            animator.SetInteger("walk", 1);
+            Debug.Log(transform.gameObject.name + " start" + nextState);
+            animator.SetInteger("walk", 0);
             currentState = nextState;
             OnExitState();
         }
@@ -85,4 +87,8 @@ public class StateController : MonoBehaviour
         currentState.UpdateState(this);
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+    }
 }

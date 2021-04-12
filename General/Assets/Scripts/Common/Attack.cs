@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
 
     private float nextAttackTime;
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public GameObject Bullet;
 
     public void AttackEnemy(Collider collider, float attackRate)
     {
@@ -27,7 +28,15 @@ public class Attack : MonoBehaviour
                 AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
                 if (animatorStateInfo.IsName("battle"))
                 {
-                    StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length));
+                    StateController stateController = GetComponent<StateController>();
+                    if(stateController.m_IsRemote)
+                    {
+                        StartCoroutine(CreateBullet(collider, animatorStateInfo.length));
+                    }
+                    else
+                    {
+                        StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length));
+                    }
                     nextAttackTime = Time.time + attackRate;
                 }
             }
@@ -57,6 +66,12 @@ public class Attack : MonoBehaviour
             return harm * myStats.critHarm;
 
         return harm;
+    }
+
+    IEnumerator CreateBullet(Collider collider, float animationTime)
+    {
+        yield return new WaitForSeconds(animationTime - 0.02f);
+
     }
 
     IEnumerator ColorReset(float attackRate)

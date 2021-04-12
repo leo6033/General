@@ -14,7 +14,7 @@ public class EncounterDecision : Decision
 
     private bool Encounter(StateController controller)
     {
-        Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.attackRange, 1 << 9);
+        Collider[] objects = Physics.OverlapSphere(controller.transform.position, controller.stats.attackRange * controller.stats.visionRange, 1 << 9);
         foreach (Collider c in objects)
         {
             // TODO: 设置攻击目标

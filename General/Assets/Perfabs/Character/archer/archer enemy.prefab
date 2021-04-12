@@ -1262,6 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 8807840972491457546}
+  Bullet: {fileID: 0}
 --- !u!114 &-3345831807752763876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,7 +1276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 8807840972491457546}
-  ensign: {fileID: 1060691791339847198, guid: 0f00e0b86542f274b905c3ff71fd1243, type: 3}
 --- !u!114 &-3195203115879192277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,6 +1291,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 70eb1eddb8ba5ab4ebb06f44f16a9890, type: 2}
   remainState: {fileID: 11400000, guid: c7a9f04e27e89f44f9873932c3c9ad0c, type: 2}
   stats: {fileID: 11400000, guid: c252197fda434ca4e9a517bde16a2dc1, type: 2}
+  m_IsRemote: 1
   navMeshAgent: {fileID: 0}
   attack: {fileID: 0}
   stateTimeElapsed: 0
