@@ -82,4 +82,9 @@ public class Health : MonoBehaviour
         else if (enemyManager != null)
             enemyManager.count -= 1;
     }
+    
+    public float getHP()
+    {
+        return m_CurrentHealth;
+    }
 }

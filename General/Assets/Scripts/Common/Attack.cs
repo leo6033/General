@@ -8,6 +8,9 @@ public class Attack : MonoBehaviour
     private float nextAttackTime;
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public GameObject Bullet;
+    public Transform BulletCreateTransform;
+
+    private bool isBattle = false;
 
     public void AttackEnemy(Collider collider, float attackRate)
     {
@@ -24,7 +27,12 @@ public class Attack : MonoBehaviour
             
             if (targetHealth.isActiveAndEnabled)
             {
-                animator.SetTrigger("battle");
+                if (!isBattle)
+                {
+                    animator.SetTrigger("battle");
+                    isBattle = true;
+                }
+                
                 AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
                 if (animatorStateInfo.IsName("battle"))
                 {
@@ -38,7 +46,13 @@ public class Attack : MonoBehaviour
                         StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length));
                     }
                     nextAttackTime = Time.time + attackRate;
+                    isBattle = false;
                 }
+                else if(Time.time > nextAttackTime + attackRate)
+                {
+                    isBattle = false;
+                }
+                
             }
             //Debug.Log(collider.name);
             //StartCoroutine(ColorReset(attackRate));
@@ -61,17 +75,22 @@ public class Attack : MonoBehaviour
         int X = Random.Range(0, 100);
 
         if (X <= enemyStats.dodgeRate)
-            return 0;
+            harm = 0;
         else if (X <= myStats.critRate + enemyStats.dodgeRate)
-            return harm * myStats.critHarm;
-
+            harm =  harm * myStats.critHarm;
+        Debug.Log(harm);
         return harm;
     }
 
     IEnumerator CreateBullet(Collider collider, float animationTime)
     {
-        yield return new WaitForSeconds(animationTime - 0.02f);
-
+        yield return new WaitForSeconds(animationTime - 1f);
+        GameObject bullet = Instantiate(Bullet, BulletCreateTransform.position, BulletCreateTransform.rotation) as GameObject;
+        Bullet b = bullet.GetComponent<Bullet>();
+        b.tag = tag;
+        b.stats = GetComponent<StateController>().stats;
+        StartCoroutine(b.shoot(collider.transform.position));
+        
     }
 
     IEnumerator ColorReset(float attackRate)

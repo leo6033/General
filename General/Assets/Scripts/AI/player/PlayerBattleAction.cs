@@ -25,7 +25,7 @@ public class PlayerBattleAction : Action
                 controller.navMeshAgent.SetDestination(controller.attackObject.transform.position);
             }
         }
-        else
+        else if(controller.CheckifCountDownElapsed(controller.stats.attackRate))
         {
             //Debug.Log(Vector3.Distance(controller.transform.position, controller.attackObject.transform.position));
             controller.animator.SetInteger("walk", 0);

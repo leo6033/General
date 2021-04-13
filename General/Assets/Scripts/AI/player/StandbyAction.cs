@@ -13,10 +13,10 @@ public class StandbyAction : Action
     private void Standby(StateController controller)
     {
         controller.navMeshAgent.SetDestination(controller.targetPoint + controller.RelativePosition);
+        controller.navMeshAgent.isStopped = false;
 
-        if (controller.navMeshAgent.remainingDistance > controller.navMeshAgent.stoppingDistance) 
+        if (controller.navMeshAgent.remainingDistance > controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) 
         {
-            controller.navMeshAgent.isStopped = false;
             controller.animator.SetInteger("walk", 1);
         }
         else

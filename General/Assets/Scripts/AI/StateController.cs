@@ -62,7 +62,7 @@ public class StateController : MonoBehaviour
     {
         if(nextState != remainState)
         {
-            Debug.Log(transform.gameObject.name + " start" + nextState);
+            //Debug.Log(transform.gameObject.name + " start" + nextState);
             animator.SetInteger("walk", 0);
             currentState = nextState;
             OnExitState();
