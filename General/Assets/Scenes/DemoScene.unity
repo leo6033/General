@@ -294,7 +294,7 @@ MonoBehaviour:
     Number: 2
     Time: 0
   - m_LegionPosition: {fileID: 1999739927}
-    LegionPrefeb: {fileID: 1673333834689261605, guid: 6d2ccb6dc6bf8a448b9677f30e735086, type: 3}
+    LegionPrefeb: {fileID: 865612857247872976, guid: 1ec09c1fdb71de14b8d3346219efc144, type: 3}
     Number: 2
     Time: 0
   m_MessageText: {fileID: 2036933795}
