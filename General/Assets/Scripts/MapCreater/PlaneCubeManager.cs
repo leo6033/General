@@ -24,9 +24,12 @@ public class PlaneCubeManager : MonoBehaviour
     {
         if (x < -10 || x > 8 || z < -15 || z > 13) return null;
 
-        int i = (int)((x+10)*7.5 + (z+15)/2);
-        if (i >= cubes.Count || i < 0) return null;
-        else return cubes[i];
+        float i = ((x+10)*7.5f + (z+15)/2);
+        if (i % 1 != 0) return null;
+        int j = (int)i;
+
+        if (j >= cubes.Count || j < 0) return null;
+        else return cubes[j];
     }
 
     public void showGrid()

@@ -334,6 +334,7 @@ MonoBehaviour:
   housePre: {fileID: 2257877680944024627, guid: 0f1e7858c3dc2ba4f8f3562ba75cc434, type: 3}
   obstaclePre: {fileID: 6424423906646166552, guid: a6f20440e1ddd7241848f2778175fe98, type: 3}
   ladderPre: {fileID: 7626123930440405267, guid: b268fa1b5e7ae0f4aab5fa3425a930fa, type: 3}
+  platMaterail: {fileID: 2100000, guid: 6c2d5a0d4939eaf4e9b0a50b125ceb9e, type: 2}
   platformNum: 1
   platformSizeMin: 5
   platformSizeMax: 5

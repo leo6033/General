@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c2d5a0d4939eaf4e9b0a50b125ceb9e, type: 2}
-  - {fileID: 2100000, guid: 6c2d5a0d4939eaf4e9b0a50b125ceb9e, type: 2}
+  - {fileID: 2100000, guid: 109207b323d039044bb30ec80470d3a2, type: 2}
+  - {fileID: 2100000, guid: 109207b323d039044bb30ec80470d3a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,3 +113,4 @@ MonoBehaviour:
   height: 0
   planeCube: {fileID: 2100000, guid: 6c2d5a0d4939eaf4e9b0a50b125ceb9e, type: 2}
   planeCubeGrid: {fileID: 2100000, guid: 5b3bc7a296243a3449e0b9b5e69dac99, type: 2}
+  playerManager: {fileID: 0}

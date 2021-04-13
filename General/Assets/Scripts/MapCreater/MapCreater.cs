@@ -22,6 +22,9 @@ public class MapCreater : MonoBehaviour
     public GameObject obstaclePre;
     public GameObject ladderPre;
 
+    [Header("材质")]
+    public Material platMaterail;
+
     [Header("高台数量")]
     public int platformNum;
     [Header("高台大小范围")]
@@ -106,8 +109,9 @@ public class MapCreater : MonoBehaviour
             
             int platSize = (int)(Random.value * (platformSizeMax - platformSizeMin) + platformSizeMin);
             int platHeight = (int)(Random.value * (platformHeightMax - platformHeightMin) + platformHeightMin);
-            float xi = (int)(Random.value * (widthSize - platSize)) + x;
-            float zi = (int)(Random.value * (lengthSize - platSize)) + z;
+            float sizeOffset = platSize % 2 == 0 ? platSize/2 : platSize/2+1;
+            float xi = (int)(Random.value * (widthSize - sizeOffset)) + x;
+            float zi = (int)(Random.value * (lengthSize - sizeOffset)) + z;
 
             Dictionary<Transform,Transform> secPlats = new Dictionary<Transform,Transform>();
             float w = xi;
@@ -117,7 +121,14 @@ public class MapCreater : MonoBehaviour
             {
                 for (float k = 0; k < platSize; k++, l += cubeSize)
                 {
-                    m_CubeScript = m_PlaneCubeManager.getCube(w, l).GetComponent<PlaneCube>();
+                    Transform cubeTransform = m_PlaneCubeManager.getCube(w, l);
+                    if (!cubeTransform)
+                    {
+                        canBuild = false;
+                        break;
+                    }
+                    m_CubeScript = cubeTransform.GetComponent<PlaneCube>();
+                    
                     if(m_CubeScript.height != 0.5f)
                     {
                         canBuild = false;
@@ -125,6 +136,7 @@ public class MapCreater : MonoBehaviour
                     }
 
                 }
+                if (!canBuild) break;
                 l = zi;
             }
             if (!canBuild)
@@ -138,16 +150,22 @@ public class MapCreater : MonoBehaviour
             {
                 for(int k = 0; k < platSize; k++,l+=cubeSize)
                 {
-                    m_CubeScript = m_PlaneCubeManager.getCube(w, l).GetComponent<PlaneCube>();
+                    Transform cubeTransform = m_PlaneCubeManager.getCube(w, l);
+                    m_CubeScript = cubeTransform.GetComponent<PlaneCube>();
+
+
                     Transform platCube = m_CubeScript.transform;
-                    
                     platCube.localScale = new Vector3(platCube.localScale.x, platCube.localScale.y, platCube.localScale.z * platHeight);
                     float z = platCube.localScale.z / 50 - m_CubeScript.height;
                     platCube.position = new Vector3(platCube.position.x, z, platCube.position.z);
                     m_CubeScript.height = platCube.localScale.z / 50 + z;
                     platCube.name = "高台" + i;
 
-                    if(j == 0)
+
+                    m_CubeScript.planeCube = platMaterail;
+                    m_CubeScript.transform.GetComponent<MeshRenderer>().material = platMaterail;
+
+                    if (j == 0)
                     {
                         Transform secPlat = m_PlaneCubeManager.getCube(w - cubeSize, l);
                         if (secPlat != null) secPlats.Add(secPlat, platCube);
@@ -203,6 +221,8 @@ public class MapCreater : MonoBehaviour
         secPlat.position = new Vector3(secPlat.position.x, z, secPlat.position.z);
         m_CubeScript.height = secPlat.localScale.z / 50 + z;
 
+        m_CubeScript.planeCube = platMaterail;
+        m_CubeScript.transform.GetComponent<MeshRenderer>().material = platMaterail;
         ////添加OffMeshLink
         //Vector3 startPos = secPlat.position;
         //float hei = (float)(transform.position.y + m_CubeScript.height + transform.localScale.y * 0.05f);
@@ -240,7 +260,8 @@ public class MapCreater : MonoBehaviour
     {
         Vector3 pos = castlePos.position;
 
-        m_CubeScript = m_PlaneCubeManager.getCube(pos.x, pos.z).GetComponent<PlaneCube>();
+        Transform cubeTransform = m_PlaneCubeManager.getCube(pos.x, pos.z);
+        m_CubeScript = cubeTransform.GetComponent<PlaneCube>();
         m_CubeScript.isShowGrid = false;
         //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量
         float y = m_CubeScript.height;
@@ -266,7 +287,8 @@ public class MapCreater : MonoBehaviour
             if (pos.z % 2 == 0) pos.z++;
             if (pos.z > lengthSize / 2 - 2) pos.z -= 2;
 
-            m_CubeScript = m_PlaneCubeManager.getCube(pos.x, pos.z).GetComponent<PlaneCube>();
+            Transform cubeTransform = m_PlaneCubeManager.getCube(pos.x, pos.z);
+            m_CubeScript = cubeTransform.GetComponent<PlaneCube>();
             if (!m_CubeScript.isShowGrid)
             {
                 i--;
@@ -285,7 +307,10 @@ public class MapCreater : MonoBehaviour
         for (int i = 0; i < housePoss.Count; i++)
         {
             Vector3 pos = housePoss[i].position;
-            m_CubeScript = m_PlaneCubeManager.getCube(pos.x, pos.z).GetComponent<PlaneCube>();
+
+
+            Transform cubeTransform = m_PlaneCubeManager.getCube(pos.x, pos.z);
+            m_CubeScript = cubeTransform.GetComponent<PlaneCube>();
             //初始高度 = 水平位置 + 地板方块高度偏移量 + 中心偏移量
             float y = 0.35f+m_CubeScript.height;
             pos.y = y;
