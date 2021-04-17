@@ -3,7 +3,17 @@ guid: 1242f43204ba86a4a8d5dc342658a038
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forest_grass_dark
+    second: {fileID: 2100000, guid: 93ddfe90168dce8449da76b995db3bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: forest_tree_base
+    second: {fileID: 2100000, guid: b4fb48e9bbc13404e829532b83c8fc3b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1710660067449392095}
   - component: {fileID: -1720459744981185802}
   m_Layer: 8
-  m_Name: primary_house_1
+  m_Name: stoneHouse
   m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1358623155540171993, guid: 91e90663bae71ef4f94a73f22a53218f, type: 3}
+  - {fileID: 2100000, guid: b4fb48e9bbc13404e829532b83c8fc3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,7 +203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1181431798116434432, guid: 91e90663bae71ef4f94a73f22a53218f, type: 3}
+  - {fileID: 2100000, guid: 93ddfe90168dce8449da76b995db3bed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -284,7 +284,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4751847460766754546, guid: 91e90663bae71ef4f94a73f22a53218f, type: 3}
+  - {fileID: 2100000, guid: 70e217ebe5ac6434b891882a40ac7e9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

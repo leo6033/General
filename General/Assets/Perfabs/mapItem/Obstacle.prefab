@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4767306433840786893}
   - component: {fileID: 8812471272771130516}
   m_Layer: 11
-  m_Name: obstacle
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -5519800421139596302, guid: 3ccc8b937d9235c47b7555ff1b81d71f, type: 3}
-  - {fileID: 1181431798116434432, guid: 3ccc8b937d9235c47b7555ff1b81d71f, type: 3}
+  - {fileID: 2100000, guid: 70e217ebe5ac6434b891882a40ac7e9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
