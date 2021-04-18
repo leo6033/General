@@ -20,11 +20,14 @@ public class StateController : MonoBehaviour
     [HideInInspector] public Collider attackObject;
     [HideInInspector] public Vector3 RelativePosition;
     [HideInInspector] public Animator animator;
+    private SpriteRenderer aperture;
 
     private bool aiActive = true;
 
     private void Awake()
     {
+        aperture = GetComponentInChildren<SpriteRenderer>();
+        aperture.enabled = false;
         navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
@@ -90,5 +93,15 @@ public class StateController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+    }
+
+    public void OnSelect()
+    {
+        aperture.enabled = true;
+    }
+
+    public void OnUnselect()
+    {
+        aperture.enabled = false;
     }
 }

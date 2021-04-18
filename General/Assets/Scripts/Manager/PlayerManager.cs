@@ -46,11 +46,19 @@ public class PlayerManager : MonoBehaviour
         return null;
     }
 
-    public void setColor(Color color)
+    public void OnSelect()
     {
-        foreach (LegionUtil legionUtil in legionUtils)
+        foreach (StateController stateController in tmp)
         {
-            legionUtil.setColor(color);
+            stateController.OnSelect();
+        }
+    }
+
+    public void OnUnselect()
+    {
+        foreach (StateController stateController in tmp)
+        {
+            stateController.OnUnselect();
         }
     }
 }

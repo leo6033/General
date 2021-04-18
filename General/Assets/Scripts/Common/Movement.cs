@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
                     PlaneCubeManager.showGrid();
                     m_Selected = true;
                     Time.timeScale = 0.1f;
-                    //go.GetComponent<PlayerManager>().setColor(Color.white);
+                    go.GetComponent<PlayerManager>().OnSelect();
                 }
             }
         }
@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
                         stateController.currentState = m_WalkState;
                         Debug.Log(transform.gameObject.name + " start" + m_WalkState);
                     }
-                    //go.GetComponent<PlayerManager>().setColor(Color.black);
+                    go.GetComponent<PlayerManager>().OnUnselect();
                     m_Selected = false;
                     PlaneCubeManager.cancleGrid();
                     go = null;
