@@ -296,6 +296,7 @@ MonoBehaviour:
   m_MessageText: {fileID: 2036933795}
   EnemyLegionPrefab: {fileID: 8084380400520461149, guid: 2783c94312967914f9989f46ab4b7708, type: 3}
   PlayerLegionPrefab: {fileID: 786513124625265864, guid: 75f365a764b33d44ca13b832e2fb025c, type: 3}
+  WarnPrefab: {fileID: 3863820147121907053, guid: b59acefe9b7fd6546a31a787b3776ff7, type: 3}
 --- !u!114 &720586195
 MonoBehaviour:
   m_ObjectHideFlags: 0

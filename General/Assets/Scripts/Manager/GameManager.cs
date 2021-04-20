@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject EnemyLegionPrefab;
     public GameObject PlayerLegionPrefab;
+    public GameObject WarnPrefab;
 
     private MapCreater mapCreater;
     private List<StateController> enemines;
@@ -111,7 +112,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CreateEnemy(Legion m_EnemyPrefab, List<GameObject> houseTransform)
     {
-        yield return new WaitForSeconds(m_EnemyPrefab.Time);
+        yield return new WaitForSeconds(m_EnemyPrefab.Time - 2);
+        Instantiate(WarnPrefab, m_EnemyPrefab.m_LegionPosition.position, m_EnemyPrefab.m_LegionPosition.rotation);
+        yield return new WaitForSeconds(2);
         GameObject legion = Instantiate(EnemyLegionPrefab, m_EnemyPrefab.m_LegionPosition.position, m_EnemyPrefab.m_LegionPosition.rotation) as GameObject;
         EnemyManager enemyManager = legion.GetComponent<EnemyManager>();
         enemyManager.Init(m_EnemyPrefab.Number, m_EnemyPrefab.LegionPrefeb);

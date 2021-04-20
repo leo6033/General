@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         foreach (StateController stateController in tmp)
         {
             stateController.SetupAI(true, null);
-            stateController.navMeshAgent.isStopped = true;
+            stateController.targetPoint = stateController.transform.position;
             stateControllers.Add(stateController);
         }
         EnsignFollow ensignFollow =  Instantiate(ensign, stateControllers[0].transform.position + ensign.transform.position, ensign.transform.rotation).GetComponent<EnsignFollow>();
