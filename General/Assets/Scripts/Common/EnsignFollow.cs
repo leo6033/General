@@ -28,20 +28,28 @@ public class EnsignFollow : MonoBehaviour
             position.y += 2;
             transform.position = position;
             transform.LookAt(-Camera.main.transform.position);
+
         }
         else
         {
             if (playerLegion != null)
             {
                 SetFollowingStateController(playerLegion.getFllowingStateController());
-                count = playerLegion.count;
             }
             else
             {
                 SetFollowingStateController(enemyLegion.getFllowingStateController());
-                count = enemyLegion.count;
             }
 
+        }
+
+        if (playerLegion != null)
+        {
+            count = playerLegion.count;
+        }
+        else
+        {
+            count = enemyLegion.count;
         }
 
         if (count != 0)
