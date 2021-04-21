@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1902132863729512737}
   - component: {fileID: -6349098266632810735}
   m_Layer: 11
-  m_Name: planeCube
+  m_Name: PlaneCube
   m_TagString: PlaneCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 109207b323d039044bb30ec80470d3a2, type: 2}
   - {fileID: 2100000, guid: 109207b323d039044bb30ec80470d3a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
