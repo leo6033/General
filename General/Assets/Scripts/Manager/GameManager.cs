@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
     //public Transform m_test;
     public Legion[] m_EnemyPrefabs;
     public Legion[] m_PlayerPrefabs;
-    public Text m_MessageText;
+
+    [Header("胜利结算面板")]
+    public Canvas WinCanvas;
+    public Text TimeText;
 
     public GameObject EnemyLegionPrefab;
     public GameObject PlayerLegionPrefab;
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundPlaying()
     {
-        m_MessageText.text = string.Empty;
+        WinCanvas.enabled = false;
         while (!CheckEnd())
         {
             yield return null;
@@ -53,8 +56,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundEnding()
     {
-
-        m_MessageText.text = EndMessage();
+        if (CheckWin())
+            Win();
+        else if (CheckLose())
+            Lose();
 
         yield return m_EndWait;
     }
@@ -139,17 +144,15 @@ public class GameManager : MonoBehaviour
         Debug.Log(players.Count);
     }
 
-    private string EndMessage()
+    private void Win()
     {
-        string message = "DRAW!";
-
-        if (CheckWin())
-            message = " WINS!";
-        else if(CheckLose())
-            message = "Lose";
-
-        message += "\n\n\n\n";
-
-        return message;
+        WinCanvas.enabled = true;
+        TimeText.text = "关卡用时:  " + (int)Time.time + "秒";
     }
+
+    private void Lose()
+    {
+
+    }
+
 }

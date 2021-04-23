@@ -1644,7 +1644,8 @@ MonoBehaviour:
     LegionPrefeb: {fileID: 865612857247872976, guid: 1ec09c1fdb71de14b8d3346219efc144, type: 3}
     Number: 2
     Time: 0
-  m_MessageText: {fileID: 114540101}
+  WinCanvas: {fileID: 653513138}
+  TimeText: {fileID: 852720688}
   EnemyLegionPrefab: {fileID: 8084380400520461149, guid: 2783c94312967914f9989f46ab4b7708, type: 3}
   PlayerLegionPrefab: {fileID: 786513124625265864, guid: 75f365a764b33d44ca13b832e2fb025c, type: 3}
   WarnPrefab: {fileID: 3863820147121907053, guid: b59acefe9b7fd6546a31a787b3776ff7, type: 3}
