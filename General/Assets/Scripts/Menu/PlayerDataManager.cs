@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerDataManager : MonoBehaviour
@@ -12,13 +10,39 @@ public class PlayerDataManager : MonoBehaviour
     public Text moneyText;
 
     public Transform armsCanvas;
-    public Transform skillCanvas;
 
     public GameObject armsSelectionCanvas;
+    public GameObject MainCanvas;
+    public GameObject SkillCancas;
 
     public PlayerData data;
+
+    
+    private void init()
+    {
+        data = new PlayerData();
+        for (int i = 0; i < 10; i++)
+        {
+            Arms a = new Arms();
+            a.name = "arms" + i;
+            a.icon = i + "";
+            data.AllArms.Add(a);
+        }
+        
+        for (int i = 0; i < 5; i++)
+        {
+            Good s = new Good();
+            s.name = "good" + i;
+            s.icon = i + "";
+            data.ALLGoods.Add(s);
+        }
+        SaveSystem.SavePlayer(data);
+        Debug.Log("SAVE");
+    }
+
     void Start()
     {
+        init();
         data = SaveSystem.LoadPlayer();
         roundText.text = "第" + data.Rounds + "回合";
         redJewelText.text = data.RedJewel + "";
@@ -26,53 +50,19 @@ public class PlayerDataManager : MonoBehaviour
         blueJewelText.text = data.BlueJewel + "";
         moneyText.text = data.Money + "";
 
-        showArms();
-        showSkill();
-        
-    }
-    bool isShowArms = false;
-    public void showArms()
-    {
-        data = SaveSystem.LoadPlayer();
-        Arms[] arms = data.CurrentArms;
-        for (int i = 0; i < arms.Length; i++)
-        {
-            if (arms[i] != null)
-            {
-                Texture2D s = (Texture2D)Resources.Load(arms[i].icon);
-                armsCanvas.GetChild(i).GetComponent<RawImage>().texture = s;
-            }
-        }
-        isShowArms = false;
-    }
-
-    public void showSkill()
-    {
-        data = SaveSystem.LoadPlayer();
-        Skill[] skills = data.skills;
-        for (int i = 0; i < skills.Length && i < 5; i++)
-        {
-            if (skills[i] != null)
-            {
-                Texture2D s = (Texture2D)Resources.Load(skills[i].icon);
-                skillCanvas.GetChild(i).GetComponent<RawImage>().texture = s;
-            }
-        }
-    }
-    public void showArmsSelectionCanvas(int i)
-    {
-        armsSelectionCanvas.GetComponent<ArmsSelectionManager>().iconIndex = i;
-        armsSelectionCanvas.GetComponent<ArmsSelectionManager>().p = this;
-        armsSelectionCanvas.SetActive(true);
     }
     
 
-    private void Update()
+    public void showArmsSelectionCanvas(int i)
     {
-        if (isShowArms)
-        {
-            showArms();
-            Debug.Log("flash");
-        }
+        armsSelectionCanvas.GetComponent<ArmsSelectionManager>().iconIndex = i;
+        armsSelectionCanvas.GetComponent<ArmsSelectionManager>().p = armsCanvas.GetComponent<ArmsShowManager>();
+        armsSelectionCanvas.SetActive(true);
+    }
+
+    public void showSkillCanvas()
+    {
+        SkillCancas.SetActive(true);
+        MainCanvas.SetActive(false);
     }
 }

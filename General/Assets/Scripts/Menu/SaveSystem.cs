@@ -11,7 +11,6 @@ public static class SaveSystem
         FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, player);
         stream.Close();
-        Debug.Log("save");
     }
 
     //读取数据
@@ -25,7 +24,34 @@ public static class SaveSystem
             PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
 
-            Debug.Log("load");
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in  " + path);
+            return null;
+        }
+    }
+
+    public static void SavePlayerSkill(PlayerSkill skill)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/skill.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+        formatter.Serialize(stream, skill);
+        stream.Close();
+    }
+
+    public static PlayerSkill LoadPlayerSkill()
+    {
+        string path = Application.persistentDataPath + "/skill.fun";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            PlayerSkill data = formatter.Deserialize(stream) as PlayerSkill;
+            stream.Close();
+
             return data;
         }
         else

@@ -17,5 +17,7 @@ public class PlayerData
     public Arms[] CurrentArms = new Arms[4];
     public List<Arms> AllArms = new List<Arms>();
 
-    public Skill[] skills = new Skill[48];
+    public List<Skill> ALLSkills = new List<Skill>();
+    public List<Good> ALLGoods = new List<Good>();
+
 }
