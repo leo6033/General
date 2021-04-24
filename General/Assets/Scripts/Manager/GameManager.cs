@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     [Header("胜利结算面板")]
     public Canvas WinCanvas;
-    public Text TimeText;
 
     public GameObject EnemyLegionPrefab;
     public GameObject PlayerLegionPrefab;
@@ -24,12 +23,15 @@ public class GameManager : MonoBehaviour
 
     private int EnemyCreateCount = 0;
     private bool EnemyCreateFinish = false;
+    private Dictionary<string, int> playerTypeNumDict;
+    private Dictionary<string, int> enemyTypeNumDict;
 
     private void Start()
     {
         m_EndWait = new WaitForSeconds(3);
         mapCreater = GetComponent<MapCreater>();
-
+        playerTypeNumDict = new Dictionary<string, int>();
+        enemyTypeNumDict = new Dictionary<string, int>();
         CreatePlayer();
         CreateEnemy(mapCreater.houses);
 
@@ -147,7 +149,24 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         WinCanvas.enabled = true;
-        TimeText.text = "关卡用时:  " + (int)Time.time + "秒";
+        Settlement settlement = WinCanvas.GetComponent<Settlement>();
+        int value;
+        foreach(StateController player in players)
+        {
+            if (!player.gameObject.activeSelf)
+            {
+                playerTypeNumDict.TryGetValue(player.Types, out value);
+                playerTypeNumDict[player.Types] = value + 1;
+            }
+        }
+
+        foreach(StateController enemy in enemines)
+        {
+            enemyTypeNumDict.TryGetValue(enemy.Types, out value);
+            enemyTypeNumDict[enemy.Types] = value + 1;
+        }
+
+        settlement.Win(playerTypeNumDict, enemyTypeNumDict);
     }
 
     private void Lose()
