@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * PlayerData类作为玩家数据类，持久化保存了玩家的所有可用兵种、可上场兵种、物品、已学习技能等信息，
+ * 详情查看PlayerData类
+ */
 public class ArmsSelectionManager : MonoBehaviour
 {
     public Transform content;
     public GameObject IconPre;
-    public Scrollbar scrollbar;
-    public Button button;
 
-    public PlayerDataManager p;
+    public ArmsShowManager p;
     public int iconIndex;
 
     PlayerData data;
@@ -18,13 +18,12 @@ public class ArmsSelectionManager : MonoBehaviour
     {
         data = SaveSystem.LoadPlayer();
         List<Arms> allArms = data.AllArms;
-        float y = 0;
         for(int i = 0; i < allArms.Count; i++)
         {
             GameObject icon = GameObject.Instantiate(IconPre);
             icon.transform.SetParent(content);
             icon.GetComponent<RawImage>().texture = (Texture2D)Resources.Load(allArms[i].icon);
-            icon.GetComponent<RectTransform>().localPosition = new Vector3(-49, y -= 60, 0);
+            icon.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
             icon.GetComponent<RectTransform>().localScale = Vector3.one;
             icon.name = i+"";
             icon.GetComponent<Button>().onClick.AddListener(delegate { selectArm(icon); });
