@@ -306,6 +306,7 @@ MonoBehaviour:
   remainState: {fileID: 11400000, guid: c7a9f04e27e89f44f9873932c3c9ad0c, type: 2}
   stats: {fileID: 11400000, guid: 5914def31d9ada643916652a1e441d64, type: 2}
   m_IsRemote: 0
+  Types: "\u5251\u5175"
   navMeshAgent: {fileID: 0}
   attack: {fileID: 0}
   stateTimeElapsed: 0
