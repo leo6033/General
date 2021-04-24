@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * PlayerData类作为玩家数据类，持久化保存了玩家的所有可用兵种、可上场兵种、物品、已学习技能等信息，
+ * 详情查看PlayerData类
+ */
 public class ArmsSelectionManager : MonoBehaviour
 {
     public Transform content;

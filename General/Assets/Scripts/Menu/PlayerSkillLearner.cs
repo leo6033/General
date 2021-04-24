@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * PlayerSkill类保存了技能信息，是一种持久化保存方式，详见PlayerSkill类
+ */
 public class PlayerSkillLearner : MonoBehaviour
 {
     public List<GameObject> Traces;
