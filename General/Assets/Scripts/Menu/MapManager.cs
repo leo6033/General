@@ -37,6 +37,14 @@ public class MapManager: MonoBehaviour
             Debug.Log(pointDict[player.CurrentLevelPoint[i - 1]] + " " + pointDict[player.CurrentLevelPoint[i]]);
             DrawLine(pointDict[player.CurrentLevelPoint[i - 1]].GetComponent<RectTransform>(), pointDict[player.CurrentLevelPoint[i]].GetComponent<RectTransform>(), Color.black);
         }
+
+        for(int i = 0; i < player.CurrentLevelPoint.Count - 1; i++)
+        {
+            Slider slider = pointDict[player.CurrentLevelPoint[i]].GetComponent<Slider>();
+            slider.handleRect.GetComponent<Image>().color = Color.gray;
+        }
+
+        pointDict[player.CurrentLevelPoint[player.CurrentLevelPoint.Count - 1]].GetComponent<Slider>().value = 1;
     }
 
     private void Draw(GameObject currentPoint)

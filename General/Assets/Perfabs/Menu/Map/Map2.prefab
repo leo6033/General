@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600ce9c2f3cc51a41b5d6f63204e6f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   Lines: {fileID: 5987522993612623362}
   firstPoints:
   - {fileID: 168277605204251446}
@@ -1768,6 +1769,14 @@ PrefabInstance:
     - target: {fileID: 554973397828503123, guid: ebe4a1fca9bff5243b8ff51cbfd3d108, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260972286040675649, guid: ebe4a1fca9bff5243b8ff51cbfd3d108, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260972286040675649, guid: ebe4a1fca9bff5243b8ff51cbfd3d108, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5855281941659833166, guid: ebe4a1fca9bff5243b8ff51cbfd3d108, type: 3}
       propertyPath: m_Name
