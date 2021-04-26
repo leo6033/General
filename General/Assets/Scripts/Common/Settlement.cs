@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class Settlement : MonoBehaviour
 {
     public Text isWinText;
@@ -21,6 +21,18 @@ public class Settlement : MonoBehaviour
     public Text Green;
     public Image blueJewel;
     public Text Blue;
+
+    public Button m_Button;
+
+    void Start()
+    {
+        m_Button.onClick.AddListener(OnClick);
+    }
+
+    public void OnClick()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
 
     public void Win(Dictionary<string, int> playerTypeNumDict, Dictionary<string, int> enemyTypeNumDict, int houseAliveNum, int[] jewel, int money)
     {
@@ -63,7 +75,7 @@ public class Settlement : MonoBehaviour
         string result = preStr;
         foreach(string type in dict.Keys)
         {
-            result += type + "-" + dict[type] + "\n" + "                    ";
+            result += type + "-" + dict[type] + "\n" + "                   ";
         }
         return result;
     }
