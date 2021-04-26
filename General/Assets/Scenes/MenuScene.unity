@@ -5175,6 +5175,7 @@ MonoBehaviour:
     BlueJewel: 0
     Money: 0
     CurrentLevelLayer: 1
+    CuttentPointNum: 0
     CurrentArms:
     - name: 
       icon: 
@@ -5187,6 +5188,7 @@ MonoBehaviour:
     AllArms: []
     ALLSkills: []
     ALLGoods: []
+    CurrentLevelPoint: 
 --- !u!1 &1291763728
 GameObject:
   m_ObjectHideFlags: 0
@@ -6654,7 +6656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.42984, y: 0}
+  m_AnchoredPosition: {x: -15.429749, y: 0}
   m_SizeDelta: {x: -845.80414, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679463307
@@ -8877,7 +8879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -34.100006, y: -176.875}
+  m_AnchoredPosition: {x: -34.10002, y: -176.875}
   m_SizeDelta: {x: -216.26141, y: -406.42612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113438823
@@ -9658,7 +9660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916928186820261402, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5916928186820261402, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9780,6 +9782,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6891516135527528749, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7432589365667196461, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9859,6 +9865,10 @@ PrefabInstance:
     - target: {fileID: 7794188509321925782, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177328690896133560, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f451f449061ad0148bb2615f51a2cbfa, type: 3}
