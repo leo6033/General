@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MapManager: MonoBehaviour
 {
+    public int level;
     public RectTransform Lines;
     [Header("起始点")]
     public List<GameObject> firstPoints;
@@ -12,11 +13,29 @@ public class MapManager: MonoBehaviour
     [Header("线宽")]
     public float LineWidth = 3.0f;
 
+    private int round;
+    private Dictionary<int, PointAttr> pointDict;
+    private int count = 0;
+
     private void Start()
     {
+        pointDict = new Dictionary<int, PointAttr>();
+        round = 1;
         foreach(GameObject point in firstPoints)
         {
+            PointAttr next = point.GetComponent<PointAttr>();
+            next.level = level;
+            next.round = round;
+            next.number = count++;
+            pointDict[next.number] = next;
             Draw(point);
+        }
+
+        PlayerData player = SaveSystem.LoadPlayer();
+        for(int i = 1; i < player.CurrentLevelPoint.Count; i++)
+        {
+            Debug.Log(pointDict[player.CurrentLevelPoint[i - 1]] + " " + pointDict[player.CurrentLevelPoint[i]]);
+            DrawLine(pointDict[player.CurrentLevelPoint[i - 1]].GetComponent<RectTransform>(), pointDict[player.CurrentLevelPoint[i]].GetComponent<RectTransform>(), Color.black);
         }
     }
 
@@ -25,6 +44,11 @@ public class MapManager: MonoBehaviour
         PointAttr pointAttr = currentPoint.GetComponent<PointAttr>();
         foreach(GameObject nextPoint in pointAttr.points)
         {
+            PointAttr next = nextPoint.GetComponent<PointAttr>();
+            next.level = level;
+            next.round = pointAttr.round + 1;
+            next.number = count++;
+            pointDict[next.number] = next;
             DrawLine(currentPoint.GetComponent<RectTransform>(), nextPoint.GetComponent<RectTransform>(), Color.red);
             Draw(nextPoint);
         }
@@ -49,7 +73,8 @@ public class MapManager: MonoBehaviour
         Vector3 targetPos = target.position;
         Vector3 curPos = start.position;
         Vector3 dir = targetPos - curPos;
-        lineRT.sizeDelta = new Vector2(dir.magnitude, LineWidth);
+        lineRT.position += dir / 4;
+        lineRT.sizeDelta = new Vector2(dir.magnitude / 2, LineWidth);
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         lineRT.localRotation = Quaternion.Euler(0, 0, angle);

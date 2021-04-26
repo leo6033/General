@@ -21,11 +21,11 @@ public class PlayerDataManager : MonoBehaviour
     private void init()
     {
         data = new PlayerData();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
             Arms a = new Arms();
             a.name = "arms" + i;
-            a.icon = i + "";
+            a.icon = "001" + i;
             data.AllArms.Add(a);
         }
         
@@ -42,7 +42,7 @@ public class PlayerDataManager : MonoBehaviour
 
     void Start()
     {
-        init();
+        //init();
         data = SaveSystem.LoadPlayer();
         roundText.text = "第" + data.Rounds + "回合";
         redJewelText.text = data.RedJewel + "";
