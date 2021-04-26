@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     public State m_WalkState;
+    public AudioSource audioSource;
 
     private GameObject go;
     private bool m_Selected = false;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
                 Debug.Log(go.gameObject.name);
                 if (go != null && go.tag == "Legion")
                 {
+                    audioSource.Play();
                     PlaneCubeManager.showGrid();
                     m_Selected = true;
                     Time.timeScale = 0.1f;

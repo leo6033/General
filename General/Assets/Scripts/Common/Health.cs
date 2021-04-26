@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public List<AudioClip> DeadAudios;
+
     private float m_StartingHealth;
     private StateController m_StateController;
     private Animator m_Animator;
     private bool m_Dead;
     private float m_CurrentHealth = 100.0f;
     private LegionUtil[] m_LegionUtils;
+    private AudioSource audioSource;
 
-    public IEnumerator TakeDamage(float amount, float animationTime)
+    public IEnumerator TakeDamage(float amount, float animationTime, AudioSource audioSource)
     {
+        audioSource.Play();
         yield return new WaitForSeconds(animationTime + 0.02f);
         //Debug.Log(this.name + " being attacked, amount: " + amount);
         m_CurrentHealth -= amount;
@@ -20,25 +24,14 @@ public class Health : MonoBehaviour
         {
             OnDeath();
         }
-        //foreach (LegionUtil legion in m_LegionUtils)
-        //{
-        //    if (legion.getColor() != Color.white)
-        //    {
-        //        legion.setColor(Color.red);
-        //    }
-        //    else
-        //        break;
-        //}
     }
 
     public void OnEnable()
     {
         m_Animator = GetComponent<Animator>();
         m_StateController = GetComponent<StateController>();
-        //if (m_StateController != null)
-        //    m_CurrentHealth = m_StateController.stats.HP;
-        //else
-        //    m_CurrentHealth = 100.0f;
+        audioSource = GetComponent<AudioSource>();
+
         m_Dead = false;
     }
 
@@ -51,9 +44,17 @@ public class Health : MonoBehaviour
             m_StateController.enabled = false;
         if(m_Animator != null)
             m_Animator.SetBool("dead", true);
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        audioSource.clip = DeadAudios[Random.Range(0, DeadAudios.Count - 1)];
+        audioSource.Play();
+
         gameObject.GetComponent<Collider>().enabled = false;
         decreaseCount();
-        Invoke("delete", 2.0f);
+        Invoke("delete", audioSource.clip.length);
     }
 
     public bool Dead()

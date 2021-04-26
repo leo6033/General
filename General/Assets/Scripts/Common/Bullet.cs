@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioSource audioSource;
+
     public float speed = 5.0f;
     [HideInInspector] public Stats stats;
     private bool attack = false;
@@ -23,14 +25,14 @@ public class Bullet : MonoBehaviour
             float currentDist = Vector3.Distance(this.transform.position, targetPosition);
             if (currentDist < 0.5f)
             {
-                attack = false;
+                attack = true;
             }
             //平移 （朝向Z轴移动）
             this.transform.Translate(Vector3.forward * Mathf.Min(speed * Time.deltaTime, currentDist));
             yield return null;
         }
 
-        Invoke("delete", 0.1f);
+        StartCoroutine(delete());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,10 +42,11 @@ public class Bullet : MonoBehaviour
         Health targetHealth = other.GetComponent<Health>();
         if (targetHealth != null && attack)
         {
-            StartCoroutine(targetHealth.TakeDamage(CalculateDamage(other), 0));
+            StartCoroutine(targetHealth.TakeDamage(CalculateDamage(other), 0, audioSource));
         }
+
         if(attack)
-            Invoke("delete", 0.1f);
+            StartCoroutine(delete());
     }
 
     private float CalculateDamage(Collider collider)
@@ -70,8 +73,12 @@ public class Bullet : MonoBehaviour
         return harm;
     }
 
-    private void delete()
+    private IEnumerator delete()
     {
-        gameObject.SetActive(false);
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }

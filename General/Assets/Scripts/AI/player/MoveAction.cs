@@ -19,8 +19,19 @@ public class MoveAction : Action
         controller.navMeshAgent.isStopped = false;
         controller.animator.SetInteger("walk", 1);
 
+        if (controller.audioSource.clip != controller.WalkAudio)
+        {
+            controller.audioSource.Stop();
+            controller.audioSource.clip = controller.WalkAudio;
+            controller.audioSource.loop = true;
+            controller.audioSource.Play();
+        }
+
         if (controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending)
         {
+
+            controller.audioSource.loop = false;
+            controller.audioSource.Stop();
             // 到目标点后，改变状态为 standby
             controller.navMeshAgent.isStopped = true;
             controller.animator.SetInteger("walk", 0);

@@ -37,13 +37,22 @@ public class Attack : MonoBehaviour
                 if (animatorStateInfo.IsName("battle"))
                 {
                     StateController stateController = GetComponent<StateController>();
+
+                    if (stateController.audioSource.isPlaying)
+                    {
+                        stateController.audioSource.loop = false;
+                        stateController.audioSource.Stop();
+                    }
+                    
                     if(stateController.m_IsRemote)
                     {
-                        StartCoroutine(CreateBullet(collider, animatorStateInfo.length));
+                        stateController.audioSource.clip = stateController.AttackAudios[Random.Range(0, stateController.AttackAudios.Count - 1)];
+                        StartCoroutine(CreateBullet(collider, animatorStateInfo.length, stateController.audioSource));
                     }
                     else
                     {
-                        StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length));
+                        stateController.audioSource.clip = stateController.AttackAudios[Random.Range(0, stateController.AttackAudios.Count - 1)];
+                        StartCoroutine(targetHealth.TakeDamage(CalculateDamage(collider), animatorStateInfo.length, stateController.audioSource));
                     }
                     nextAttackTime = Time.time + attackRate;
                     isBattle = false;
@@ -82,9 +91,10 @@ public class Attack : MonoBehaviour
         return harm;
     }
 
-    IEnumerator CreateBullet(Collider collider, float animationTime)
+    IEnumerator CreateBullet(Collider collider, float animationTime, AudioSource audioSource)
     {
         yield return new WaitForSeconds(animationTime - 1f);
+        audioSource.Play();
         GameObject bullet = Instantiate(Bullet, BulletCreateTransform.position, BulletCreateTransform.rotation) as GameObject;
         Bullet b = bullet.GetComponent<Bullet>();
         b.tag = tag;

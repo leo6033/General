@@ -16,6 +16,14 @@ public class WalkAction : Action
         controller.navMeshAgent.isStopped = false;
         controller.animator.SetInteger("walk", 1);
 
+        if (controller.audioSource.clip != controller.WalkAudio)
+        {
+            controller.audioSource.Stop();
+            controller.audioSource.clip = controller.WalkAudio;
+            controller.audioSource.loop = true;
+            controller.audioSource.Play();
+        }
+
         if ((controller.navMeshAgent.remainingDistance <= controller.navMeshAgent.stoppingDistance && !controller.navMeshAgent.pathPending) || controller.targetHouse.GetComponent<Health>().Dead())
         {
             controller.houseList.Remove(controller.targetHouse);

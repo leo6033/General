@@ -10,7 +10,10 @@ public class StateController : MonoBehaviour
     public Stats stats;
     public bool m_IsRemote;
     public string Types;
+    public List<AudioClip> AttackAudios;
+    public AudioClip WalkAudio;
 
+    [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [HideInInspector] public Attack attack;
     [HideInInspector] public float stateTimeElapsed;
@@ -32,6 +35,7 @@ public class StateController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetupAI(bool aiActivationFromManager, List<GameObject> HouseFromManager)
