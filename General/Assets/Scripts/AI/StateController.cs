@@ -9,6 +9,7 @@ public class StateController : MonoBehaviour
     public State remainState;
     public Stats stats;
     public bool m_IsRemote;
+    public string Types;
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [HideInInspector] public Attack attack;

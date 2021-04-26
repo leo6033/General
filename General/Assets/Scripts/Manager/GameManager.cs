@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     //public Transform m_test;
     public Legion[] m_EnemyPrefabs;
     public Legion[] m_PlayerPrefabs;
-    public Text m_MessageText;
+
+    [Header("胜利结算面板")]
+    public Canvas WinCanvas;
 
     public GameObject EnemyLegionPrefab;
     public GameObject PlayerLegionPrefab;
@@ -21,12 +23,15 @@ public class GameManager : MonoBehaviour
 
     private int EnemyCreateCount = 0;
     private bool EnemyCreateFinish = false;
+    private Dictionary<string, int> playerTypeNumDict;
+    private Dictionary<string, int> enemyTypeNumDict;
 
     private void Start()
     {
         m_EndWait = new WaitForSeconds(3);
         mapCreater = GetComponent<MapCreater>();
-
+        playerTypeNumDict = new Dictionary<string, int>();
+        enemyTypeNumDict = new Dictionary<string, int>();
         CreatePlayer();
         CreateEnemy(mapCreater.houses);
 
@@ -44,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundPlaying()
     {
-        m_MessageText.text = string.Empty;
+        WinCanvas.enabled = false;
         while (!CheckEnd())
         {
             yield return null;
@@ -53,8 +58,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundEnding()
     {
-
-        m_MessageText.text = EndMessage();
+        if (CheckWin())
+            Win();
+        else if (CheckLose())
+            Lose();
 
         yield return m_EndWait;
     }
@@ -139,17 +146,32 @@ public class GameManager : MonoBehaviour
         Debug.Log(players.Count);
     }
 
-    private string EndMessage()
+    private void Win()
     {
-        string message = "DRAW!";
+        WinCanvas.enabled = true;
+        Settlement settlement = WinCanvas.GetComponent<Settlement>();
+        int value;
+        foreach(StateController player in players)
+        {
+            if (!player.gameObject.activeSelf)
+            {
+                playerTypeNumDict.TryGetValue(player.Types, out value);
+                playerTypeNumDict[player.Types] = value + 1;
+            }
+        }
 
-        if (CheckWin())
-            message = " WINS!";
-        else if(CheckLose())
-            message = "Lose";
+        foreach(StateController enemy in enemines)
+        {
+            enemyTypeNumDict.TryGetValue(enemy.Types, out value);
+            enemyTypeNumDict[enemy.Types] = value + 1;
+        }
 
-        message += "\n\n\n\n";
-
-        return message;
+        settlement.Win(playerTypeNumDict, enemyTypeNumDict);
     }
+
+    private void Lose()
+    {
+
+    }
+
 }

@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     private LegionUtil[] legionUtils;
     private List<StateController> tmp;
+    private string Types;
     
 
     public void Init(float Number, GameObject LegionPrefeb)
@@ -33,6 +34,7 @@ public class PlayerManager : MonoBehaviour
             stateControllers.Add(stateController);
         }
         EnsignFollow ensignFollow =  Instantiate(ensign, stateControllers[0].transform.position + ensign.transform.position, ensign.transform.rotation).GetComponent<EnsignFollow>();
+        Types = tmp[0].Types;
         ensignFollow.playerLegion = this;
     }
 
@@ -60,5 +62,15 @@ public class PlayerManager : MonoBehaviour
         {
             stateController.OnUnselect();
         }
+    }
+
+    public string getTypes()
+    {
+        return Types;
+    }
+
+    public int getCount()
+    {
+        return count;
     }
 }
