@@ -190,6 +190,8 @@ public class GameManager : MonoBehaviour
         playerData.YellowJewel += jewel[1];
         playerData.BlueJewel += jewel[2];
         playerData.Money += m_Money;
+        playerData.Rounds += 1;
+        playerData.CurrentLevelPoint.Add(playerData.CuttentPointNum);
         SaveSystem.SavePlayer(playerData);
 
         settlement.Win(playerTypeNumDict, enemyTypeNumDict, houseAliveNum, jewel, m_Money);
