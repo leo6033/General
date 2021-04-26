@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //public Transform m_test;
+    public int m_Money;
     public Legion[] m_EnemyPrefabs;
     public Legion[] m_PlayerPrefabs;
 
@@ -26,12 +26,21 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, int> playerTypeNumDict;
     private Dictionary<string, int> enemyTypeNumDict;
 
+    private PlayerData playerData;
+    private int houseAliveNum;
+
     private void Start()
     {
+        playerData = SaveSystem.LoadPlayer();
+
         m_EndWait = new WaitForSeconds(3);
+
         mapCreater = GetComponent<MapCreater>();
         playerTypeNumDict = new Dictionary<string, int>();
         enemyTypeNumDict = new Dictionary<string, int>();
+
+        houseAliveNum = mapCreater.houses.Count;
+
         CreatePlayer();
         CreateEnemy(mapCreater.houses);
 
@@ -166,12 +175,58 @@ public class GameManager : MonoBehaviour
             enemyTypeNumDict[enemy.Types] = value + 1;
         }
 
-        settlement.Win(playerTypeNumDict, enemyTypeNumDict);
+        // 计算宝石数 red green blue
+        int[] jewel = new int[3];
+        foreach(GameObject house in mapCreater.houses)
+        {
+            if (house.activeSelf)
+            {
+                int random = Random.Range(0, 2);
+                jewel[random]++;
+                houseAliveNum--;
+            }
+        }
+        playerData.RedJewel += jewel[0];
+        playerData.YellowJewel += jewel[1];
+        playerData.BlueJewel += jewel[2];
+        playerData.Money += m_Money;
+        SaveSystem.SavePlayer(playerData);
+
+        settlement.Win(playerTypeNumDict, enemyTypeNumDict, houseAliveNum, jewel, m_Money);
     }
 
     private void Lose()
     {
+        WinCanvas.enabled = true;
+        Settlement settlement = WinCanvas.GetComponent<Settlement>();
+        int value;
+        foreach (StateController player in players)
+        {
+            if (!player.gameObject.activeSelf)
+            {
+                playerTypeNumDict.TryGetValue(player.Types, out value);
+                playerTypeNumDict[player.Types] = value + 1;
+            }
+        }
 
+        foreach (StateController enemy in enemines)
+        {
+            if (!enemy.gameObject.activeSelf)
+            {
+                enemyTypeNumDict.TryGetValue(enemy.Types, out value);
+                enemyTypeNumDict[enemy.Types] = value + 1;
+            }
+        }
+
+        foreach (GameObject house in mapCreater.houses)
+        {
+            if (house.activeSelf)
+            {
+                houseAliveNum--;
+            }
+        }
+
+        settlement.Lose(playerTypeNumDict, enemyTypeNumDict, houseAliveNum);
     }
 
 }
