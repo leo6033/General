@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public AudioSource audioSource;
+    public GameObject explosionPrefeb;
 
     public float speed = 5.0f;
     [HideInInspector] public Stats stats;
@@ -12,6 +13,7 @@ public class Bullet : MonoBehaviour
 
     public IEnumerator shoot(Vector3 targetPosition)
     {
+        yield return new WaitForSeconds(0.1f);
         float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
         while (!attack)
         {
@@ -75,10 +77,18 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator delete()
     {
-        while (audioSource.isPlaying)
+        ParticleSystem[] particleSystems = GetComponents<ParticleSystem>();
+        foreach(ParticleSystem particleSystem in particleSystems)
         {
-            yield return null;
+            particleSystem.Stop();
         }
+
+        if(explosionPrefeb != null)
+            Instantiate(explosionPrefeb, transform);
+
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+        yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
     }
 }
