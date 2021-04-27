@@ -28,8 +28,16 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found in  " + path);
-            return null;
+            PlayerData data = new PlayerData();
+            for (int i = 0; i < 1; i++)
+            {
+                Arms a = new Arms("arms" + i, "0010");
+                data.AllArms.Add(a);
+            }
+
+            SaveSystem.SavePlayer(data);
+            Debug.LogWarning("Save file not found in  " + path + ", Create a new data");
+            return data;
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8848893439982213465}
   - component: {fileID: 8675597055802960026}
   - component: {fileID: 3551645180424428632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fence_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7275306292196012433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,9 +127,9 @@ GameObject:
   - component: {fileID: 1971082223682884591}
   - component: {fileID: -3604816614532675035}
   - component: {fileID: -1138377429018050923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: castle
-  m_TagString: Untagged
+  m_TagString: Castle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 6956595916317812920}
   - component: {fileID: 6602728912162096333}
   - component: {fileID: 6379848278136116608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: altar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6071835717800904785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 35432703454806405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bone.001_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 7750740076659616231}
   - component: {fileID: 3654660947903703751}
   - component: {fileID: 259095323737488240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fence_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7364754152930203470}
   - component: {fileID: 7382325307969226584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5000039444562593370}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,9 +672,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1240574551194845375}
     m_Modifications:
+    - target: {fileID: 1063051830369628, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_Name
       value: LargeFlames
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4430340635691708, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_RootOrder
