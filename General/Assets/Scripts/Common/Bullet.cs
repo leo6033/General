@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
             this.transform.rotation = this.transform.rotation * Quaternion.Euler(Mathf.Clamp(-angle, -42, 42), 0, 0);
             //当前距离目标点
             float currentDist = Vector3.Distance(this.transform.position, targetPosition);
-            if (currentDist < 0.5f)
+            if (currentDist < 0.1f)
             {
                 attack = true;
             }
