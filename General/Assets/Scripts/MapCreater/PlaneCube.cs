@@ -16,6 +16,8 @@ public class PlaneCube : MonoBehaviour
     private void Awake()
     {
         height = transform.position.y + transform.localScale.y / 25 * 0.5f;
+        // TODO: 假装修好了高台渲染的bug
+        cancelGrid();
     }
 
     public void showGrid()

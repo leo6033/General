@@ -5180,12 +5180,16 @@ MonoBehaviour:
     CurrentArms:
     - name: 
       icon: 
+      selectedIndex: 0
     - name: 
       icon: 
+      selectedIndex: 0
     - name: 
       icon: 
+      selectedIndex: 0
     - name: 
       icon: 
+      selectedIndex: 0
     AllArms: []
     ALLSkills: []
     ALLGoods: []
@@ -6329,6 +6333,7 @@ GameObject:
   - component: {fileID: 1570016095}
   - component: {fileID: 1570016094}
   - component: {fileID: 1570016093}
+  - component: {fileID: 1570016096}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -6398,7 +6403,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1570016094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1570016096}
+        m_TargetAssemblyTypeName: ButtonClick, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1570016094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6437,6 +6454,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570016091}
   m_CullTransparentMesh: 0
+--- !u!114 &1570016096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570016091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b072048a3f048294eab4ac8ae40dcc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickClip: {fileID: 8300000, guid: 1df6c7fc64b1915438cd727b9a4f12d7, type: 3}
 --- !u!1 &1596293516
 GameObject:
   m_ObjectHideFlags: 0
@@ -6753,7 +6783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.429749, y: 0}
+  m_AnchoredPosition: {x: -15.4296875, y: 0}
   m_SizeDelta: {x: -845.80414, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679463307
