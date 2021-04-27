@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerDataManager : MonoBehaviour
 {
@@ -23,9 +24,7 @@ public class PlayerDataManager : MonoBehaviour
         data = new PlayerData();
         for (int i = 0; i < 5; i++)
         {
-            Arms a = new Arms();
-            a.name = "arms" + i;
-            a.icon = "001" + i;
+            Arms a = new Arms("arms" + i, "001" + i);
             data.AllArms.Add(a);
         }
         
@@ -49,7 +48,6 @@ public class PlayerDataManager : MonoBehaviour
         yellowJewelText.text = data.YellowJewel + "";
         blueJewelText.text = data.BlueJewel + "";
         moneyText.text = data.Money + "";
-
     }
     
 

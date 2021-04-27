@@ -44,7 +44,8 @@ public class MapManager: MonoBehaviour
             slider.handleRect.GetComponent<Image>().color = Color.gray;
         }
 
-        pointDict[player.CurrentLevelPoint[player.CurrentLevelPoint.Count - 1]].GetComponent<Slider>().value = 1;
+        if(player.CurrentLevelPoint.Count > 0)
+            pointDict[player.CurrentLevelPoint[player.CurrentLevelPoint.Count - 1]].GetComponent<Slider>().value = 1;
     }
 
     private void Draw(GameObject currentPoint)

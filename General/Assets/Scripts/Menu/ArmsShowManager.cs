@@ -20,6 +20,10 @@ public class ArmsShowManager : MonoBehaviour
                 Texture2D s = (Texture2D)Resources.Load(arms[i].icon);
                 transform.GetChild(i + 1).GetComponent<RawImage>().texture = s;
             }
+            else
+            {
+                transform.GetChild(i + 1).GetComponent<RawImage>().texture = null;
+            }
         }
     }
 }

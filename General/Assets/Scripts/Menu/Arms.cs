@@ -10,4 +10,22 @@ public class Arms
 {
     public string name;
     public string icon;
+    public int selectedIndex;
+
+    private string type;    // 兵种类型
+    private string LegionPrefebPath;    // 预制体路径
+    public Arms(string name, string icon)
+    {
+        this.name = name;
+        this.icon = "UI/" + icon;
+        selectedIndex = -1;
+
+        type = "normal";
+        LegionPrefebPath = "Perfabs/Character/normal/" + type + " player";
+    }
+
+    public string getLegionPrefebPath()
+    {
+        return LegionPrefebPath;
+    }
 }

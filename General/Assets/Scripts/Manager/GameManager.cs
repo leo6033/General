@@ -32,11 +32,12 @@ public class GameManager : MonoBehaviour
 
     private PlayerData playerData;
     private int houseAliveNum;
+    private int playerLegionNum;
 
     private void Start()
     {
         playerData = SaveSystem.LoadPlayer();
-
+        initPlayerLegion();
         m_EndWait = new WaitForSeconds(3);
 
         mapCreater = GetComponent<MapCreater>();
@@ -51,12 +52,32 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Game());
     }
 
+    private void initPlayerLegion()
+    {
+        playerLegionNum = 0;
+        for (int i = 0; i < playerData.CurrentArms.Length; i++)
+        {
+            if(playerData.CurrentArms[i] != null)
+            {
+                m_PlayerPrefabs[playerLegionNum++].LegionPrefeb = (GameObject)Resources.Load(playerData.CurrentArms[i].getLegionPrefebPath());
+            }
+        }
+    }
+
     private IEnumerator Game()
     {
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
+        foreach(StateController stateController in enemines)
+        {
+            stateController.enabled = false;
+        }
 
+        foreach(StateController stateController in players)
+        {
+            stateController.enabled = false;
+        }
         //StartCoroutine(Game());
     }
 
@@ -148,7 +169,7 @@ public class GameManager : MonoBehaviour
     private void CreatePlayer()
     {
         players = new List<StateController>();
-        for(int i = 0; i < m_PlayerPrefabs.Length; i++)
+        for(int i = 0; i < playerLegionNum; i++)
         {
             GameObject legion = Instantiate(PlayerLegionPrefab, m_PlayerPrefabs[i].m_LegionPosition.position, m_PlayerPrefabs[i].m_LegionPosition.rotation) as GameObject;
             PlayerManager playerManager = legion.GetComponent<PlayerManager>();
@@ -194,8 +215,14 @@ public class GameManager : MonoBehaviour
         playerData.YellowJewel += jewel[1];
         playerData.BlueJewel += jewel[2];
         playerData.Money += m_Money;
+        // TODO: 暂时通过硬编码来增加兵团数量
+        if(playerData.Rounds < 5 && playerData.Rounds != 2)
+        {
+            playerData.AllArms.Add(new Arms("arms" + playerData.AllArms.Count, "0010"));
+        }
         playerData.Rounds += 1;
         playerData.CurrentLevelPoint.Add(playerData.CuttentPointNum);
+        playerData.CurrentArms = new Arms[4];
         SaveSystem.SavePlayer(playerData);
 
 
@@ -236,6 +263,9 @@ public class GameManager : MonoBehaviour
         }
         audioSource.clip = LoseClip;
         audioSource.Play();
+
+        playerData.CurrentArms = new Arms[4];
+        SaveSystem.SavePlayer(playerData);
 
         settlement.Lose(playerTypeNumDict, enemyTypeNumDict, houseAliveNum);
     }

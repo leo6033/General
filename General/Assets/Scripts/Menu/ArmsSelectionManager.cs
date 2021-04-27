@@ -38,7 +38,14 @@ public class ArmsSelectionManager : MonoBehaviour
     {
         int i = int.Parse(item.name);
         Arms a = data.AllArms[i];
+
+        if (a.selectedIndex != -1)
+            data.CurrentArms[a.selectedIndex] = null;
+        if (data.CurrentArms[iconIndex] != null)
+            data.CurrentArms[iconIndex].selectedIndex = -1;
+        a.selectedIndex = iconIndex;
         data.CurrentArms[iconIndex] = a;
+
         SaveSystem.SavePlayer(data);
         p.showArms();
         gameObject.SetActive(false);
