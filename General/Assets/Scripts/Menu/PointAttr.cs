@@ -17,7 +17,14 @@ public class PointAttr : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         PlayerData player = SaveSystem.LoadPlayer();
-        if (player.Rounds == round && player.CurrentLevelLayer == level)
+        int armCount = 0;
+        for(int i = 0; i < player.CurrentArms.Length; i++)
+        {
+            if (player.CurrentArms[i] != null)
+                armCount++;
+        }
+
+        if (player.Rounds == round && player.CurrentLevelLayer == level && armCount != 0)
         {
             if(SceneName == "")
             {
