@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerLegionPrefab;
     public GameObject WarnPrefab;
 
+    public AudioSource audioSource;
+    public AudioClip WinClip;
+    public AudioClip LoseClip;
+
     private MapCreater mapCreater;
     private List<StateController> enemines;
     private List<StateController> players;
@@ -194,6 +198,9 @@ public class GameManager : MonoBehaviour
         playerData.CurrentLevelPoint.Add(playerData.CuttentPointNum);
         SaveSystem.SavePlayer(playerData);
 
+
+        audioSource.clip = WinClip;
+        audioSource.Play();
         settlement.Win(playerTypeNumDict, enemyTypeNumDict, houseAliveNum, jewel, m_Money);
     }
 
@@ -227,6 +234,8 @@ public class GameManager : MonoBehaviour
                 houseAliveNum--;
             }
         }
+        audioSource.clip = LoseClip;
+        audioSource.Play();
 
         settlement.Lose(playerTypeNumDict, enemyTypeNumDict, houseAliveNum);
     }
